@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from '../services/api';
+import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class ProductList extends React.Component {
 
     this.state = {
       empty: true,
+      list: [],
     };
   }
 
@@ -20,12 +22,15 @@ class ProductList extends React.Component {
     const { search } = this.props;
     if (search !== '') {
       const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', search);
-      console.log(response.results);
+      this.setState({
+        empty: false,
+        list: response.results,
+      });
     }
   }
 
   render() {
-    const { empty } = this.state;
+    const { empty, list } = this.state;
     if (empty) {
       return (
         <p data-testid="home-initial-message">
@@ -36,7 +41,9 @@ class ProductList extends React.Component {
 
     return (
       <div>
-        Lista
+        {
+          list.map((product) => <ProductCard key={ product.id } product={ product } />)
+        }
       </div>
     );
   }

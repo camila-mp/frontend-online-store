@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       search: '',
@@ -19,11 +21,20 @@ class SearchBar extends React.Component {
     });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { getState } = this.props;
+    const { search } = this.state;
+
+    getState(search);
+  }
+
   render() {
     const { search } = this.state;
 
     return (
-      <form>
+      <form onSubmit={ this.handleSubmit }>
         <input
           name="search"
           value={ search }
@@ -37,5 +48,9 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  getState: PropTypes.func.isRequired,
+};
 
 export default SearchBar;

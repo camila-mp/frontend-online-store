@@ -4,10 +4,26 @@ import SearchBar from './components/SearchBar';
 import './App.css';
 
 class App extends React.Component {
+  constructor() {
+    super();
+
+    this.getState = this.getState.bind(this);
+
+    this.state = {
+      search: '',
+    };
+  }
+
+  getState(searchInput) {
+    this.setState({
+      search: searchInput,
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar getState={ this.getState } />
         <ProductList />
       </div>
     );

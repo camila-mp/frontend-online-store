@@ -6,13 +6,22 @@ class ProductList extends React.Component {
 
     this.state = {
       empty: true,
-    }
+    };
   }
+
   render() {
     const { empty } = this.state;
+    if (empty) {
+      return (
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+      );
+    }
+
     return (
       <div>
-        { empty ? <p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p> : 'Lista futura' }
+        Lista
       </div>
     );
   }

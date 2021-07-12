@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
 
@@ -20,6 +21,7 @@ class ProductList extends React.Component {
 
   async fetchProducts() {
     const { search } = this.props;
+
     if (search !== '') {
       const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', search);
       this.setState({
@@ -31,6 +33,7 @@ class ProductList extends React.Component {
 
   render() {
     const { empty, list } = this.state;
+
     if (empty) {
       return (
         <p data-testid="home-initial-message">
@@ -54,5 +57,9 @@ class ProductList extends React.Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  search: PropTypes.string.isRequired,
+};
 
 export default ProductList;

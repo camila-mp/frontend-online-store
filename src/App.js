@@ -21,10 +21,12 @@ class App extends React.Component {
   }
 
   render() {
+    const { search } = this.state;
+
     return (
       <div className="App">
         <SearchBar getState={ this.getState } />
-        <ProductList />
+        <ProductList search={ search } />
       </div>
     );
   }

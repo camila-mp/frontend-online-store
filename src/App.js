@@ -14,12 +14,15 @@ class App extends React.Component {
     super(props);
 
     this.getState = this.getState.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
 
     this.state = {
       categoryList: [],
       category: '',
       searchQuery: '',
       productDetails: {},
+      list: [],
+      loading: true,
     };
   }
 
@@ -37,6 +40,20 @@ class App extends React.Component {
   getState(name, value) {
     this.setState({
       [name]: value,
+    });
+  }
+
+  fetchProducts() {
+    const { searchQuery, category } = this.state;
+
+    this.setState({
+      loading: true,
+    }, async () => {
+      const response = await api.getProductsFromCategoryAndQuery(category, searchQuery);
+      this.setState({
+        list: response.results,
+        loading: false,
+      });
     });
   }
 
@@ -59,7 +76,10 @@ class App extends React.Component {
             />
             <Route
               exact path="/details"
-              render={ (props) => <ProductDetails {...props} product={ productDetails }/> } 
+              render={ (props) => (<ProductDetails
+                {...props}
+                product={ productDetails }
+              />) }
             />
             <Route exact path="/" component={ StartMessage } />
           </Switch>

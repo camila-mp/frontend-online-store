@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './SearchBar.css';
 import BtnCart from './BtnCart';
 
@@ -23,8 +24,8 @@ class SearchBar extends React.Component {
     });
   }
 
-  handleClick(e) {
-    e.preventDefault();
+  handleClick() {
+    // e.preventDefault();
     const { getState } = this.props;
     const { search } = this.state;
 
@@ -44,13 +45,15 @@ class SearchBar extends React.Component {
           type="text"
           onChange={ this.handleChange }
         />
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.handleClick }
-        >
-          Procurar
-        </button>
+        <Link to="/search">
+          <button
+            data-testid="query-button"
+            type="button"
+            onClick={ this.handleClick }
+          >
+            Procurar
+          </button>
+        </Link>
         <BtnCart />
       </header>
     );

@@ -19,13 +19,10 @@ class ProductList extends React.Component {
     this.fetchProducts();
   }
 
-  // Usando querys na URL para trazer o parâmetro da busca de algumas fontes:
-  // https://reactgo.com/react-get-query-params/
-  // https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-react-router
   componentDidUpdate(prevProps) {
     const { query } = this.props;
-    const { prevQuery } = prevProps;
-    console.log(query, prevQuery);
+    const { query: prevQuery } = prevProps;
+
     if (prevQuery !== query) {
       this.fetchProducts();
     }
@@ -67,9 +64,8 @@ class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  location: PropTypes.shape({
-    search: PropTypes.string.isRequired,
-  }).isRequired,
+  query: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default ProductList;

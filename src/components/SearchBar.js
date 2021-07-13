@@ -24,12 +24,11 @@ class SearchBar extends React.Component {
     });
   }
 
-  handleClick() {
-    // e.preventDefault();
+  handleClick({ target: { name } }) {
     const { getState } = this.props;
     const { search } = this.state;
 
-    getState(search);
+    getState(name, search);
   }
 
   render() {
@@ -50,6 +49,7 @@ class SearchBar extends React.Component {
             data-testid="query-button"
             type="button"
             onClick={ this.handleClick }
+            name="searchQuery"
           >
             Procurar
           </button>

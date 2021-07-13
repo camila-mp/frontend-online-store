@@ -16,7 +16,7 @@ class App extends React.Component {
 
     this.state = {
       categoryList: [],
-      category: 'MLB5672',
+      category: '',
       searchQuery: '',
     };
   }
@@ -32,9 +32,9 @@ class App extends React.Component {
     });
   }
 
-  getState(search) {
+  getState(name, value) {
     this.setState({
-      searchQuery: search,
+      [name]: value,
     });
   }
 
@@ -44,7 +44,7 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <SearchBar getState={ this.getState } />
-          <CategoryFilter categoryList={ categoryList } />
+          <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
           <Switch>
             <Route exact path="/ShoppingCart" component={ ShoppingCart } />
             <Route

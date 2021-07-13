@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
           type="text"
           onChange={ this.handleChange }
         />
-        <Link to={ `/search/${search}` }>
+        <Link to={ `/search?query=${search}` }>
           <button data-testid="query-button" type="button">Procurar</button>
         </Link>
       </form>

@@ -20,10 +20,10 @@ class ProductList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { query } = this.props;
-    const { query: prevQuery } = prevProps;
+    const { query, category } = this.props;
+    const { query: prevQuery, category: prevCategory } = prevProps;
 
-    if (prevQuery !== query) {
+    if (prevQuery !== query || prevCategory !== category) {
       this.fetchProducts();
     }
   }
@@ -34,7 +34,7 @@ class ProductList extends React.Component {
     this.setState({
       loading: true,
     }, async () => {
-      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', query);
+      const response = await api.getProductsFromCategoryAndQuery(category, query);
       this.setState({
         list: response.results,
         loading: false,

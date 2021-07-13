@@ -16,7 +16,7 @@ class App extends React.Component {
 
     this.state = {
       categoryList: [],
-      category: '',
+      category: 'MLB5672',
       searchQuery: '',
     };
   }

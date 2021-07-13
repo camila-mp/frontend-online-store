@@ -44,6 +44,7 @@ class ProductList extends React.Component {
 
   render() {
     const { list, loading } = this.state;
+    const { getState } = this.props;
 
     if (loading) return <p>Carregando...</p>;
 
@@ -56,7 +57,7 @@ class ProductList extends React.Component {
     return (
       <div>
         {
-          list.map((product) => <ProductCard key={ product.id } product={ product } />)
+          list.map((product) => <ProductCard key={ product.id } product={ product } getState={ getState } />)
         }
       </div>
     );
@@ -66,6 +67,7 @@ class ProductList extends React.Component {
 ProductList.propTypes = {
   query: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  getState: PropTypes.func.isRequired,
 };
 
 export default ProductList;

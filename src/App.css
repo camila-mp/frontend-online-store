@@ -10,6 +10,7 @@
 }
 
 .body-container {
+  align-items: flex-start;
   display: flex;
 }
 

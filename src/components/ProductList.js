@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
+import './ProductList.css';
 
 class ProductList extends React.Component {
   constructor(props) {

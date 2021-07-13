@@ -45,16 +45,16 @@ class ProductList extends React.Component {
   render() {
     const { list, loading } = this.state;
 
-    if (loading) return <p>Carregando...</p>;
+    if (loading) return <p className="main-container">Carregando...</p>;
 
     if (list.length === 0) {
       return (
-        <p>Nenhum produto foi encontrado</p>
+        <p className="main-container">Nenhum produto foi encontrado</p>
       );
     }
 
     return (
-      <div>
+      <div className="main-container">
         {
           list.map((product) => <ProductCard key={ product.id } product={ product } />)
         }

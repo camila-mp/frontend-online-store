@@ -44,19 +44,21 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <SearchBar getState={ this.getState } />
-          <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
-          <Switch>
-            <Route exact path="/ShoppingCart" component={ ShoppingCart } />
-            <Route
-              path="/search"
-              render={ (props) => (<ProductList
-                { ...props }
-                query={ searchQuery }
-                category={ category }
-              />) }
-            />
-            <Route exact path="/" component={ StartMessage } />
-          </Switch>
+          <section className="body-container">
+            <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
+            <Switch>
+              <Route exact path="/ShoppingCart" component={ ShoppingCart } />
+              <Route
+                path="/search"
+                render={ (props) => (<ProductList
+                  { ...props }
+                  query={ searchQuery }
+                  category={ category }
+                />) }
+              />
+              <Route exact path="/" component={ StartMessage } />
+            </Switch>
+          </section>
         </BrowserRouter>
       </div>
     );

@@ -58,7 +58,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { categoryList, category, searchQuery, productDetails } = this.state;
+    const { categoryList, loading, list, productDetails, searchQuery, category } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -70,8 +70,11 @@ class App extends React.Component {
               path="/search"
               render={ (props) => (<ProductList
                 { ...props }
-                query={ searchQuery }
-                category={ category }
+                query= { searchQuery }
+                category= { category }
+                list={ list }
+                loading={ loading }
+                fetchProducts={ this.fetchProducts }
               />) }
             />
             <Route

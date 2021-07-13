@@ -20,20 +20,20 @@ class ProductList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { match: { params: { id } } } = this.props;
+    const { match: { params: { query } } } = this.props;
 
-    if (prevProps.match.params.id !== id) {
+    if (prevProps.match.params.query !== query) {
       this.fetchProducts();
     }
   }
 
   async fetchProducts() {
-    const { match: { params: { id } } } = this.props;
+    const { match: { params: { query } } } = this.props;
 
     this.setState({
       loading: true,
     }, async () => {
-      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', id);
+      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', query);
       this.setState({
         list: response.results,
         loading: false,
@@ -65,7 +65,7 @@ class ProductList extends React.Component {
 ProductList.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      query: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };

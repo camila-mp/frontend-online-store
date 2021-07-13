@@ -12,7 +12,7 @@ class App extends React.Component {
         <BrowserRouter>
           <SearchBar />
           <Switch>
-            <Route path="/search/:id" component={ ProductList } />
+            <Route path="/search/:query" component={ ProductList } />
             <Route exact path="/" component={ StartMessage } />
           </Switch>
         </BrowserRouter>

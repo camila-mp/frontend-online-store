@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
 import ShoppingCart from './components/ShoppingCart';
 import './App.css';
+import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
 
@@ -39,7 +40,8 @@ class App extends React.Component {
           <CategoryFilter categoryList={ categoryList } />
           <Switch>
             <Route exact path="/ShoppingCart" component={ ShoppingCart } />
-            <Route exact path="/" component={ ProductList } />
+            <Route path="/search" component={ ProductList } />
+            <Route exact path="/" component={ StartMessage } />
           </Switch>
         </BrowserRouter>
       </div>

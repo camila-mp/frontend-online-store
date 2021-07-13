@@ -5,13 +5,13 @@ class ShoppingCart extends Component {
     super();
 
     this.state = {
-      empyt: true,
+      empty: true,
     };
   }
 
   render() {
-    const { empyt } = this.state;
-    if (empyt) {
+    const { empty } = this.state;
+    if (empty) {
       return (
         <div>
           <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>

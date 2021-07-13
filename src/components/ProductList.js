@@ -1,30 +1,76 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import * as api from '../services/api';
+import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.fetchProducts = this.fetchProducts.bind(this);
+
     this.state = {
-      empty: true,
+      loading: true,
+      list: [],
     };
   }
 
+  componentDidMount() {
+    this.fetchProducts();
+  }
+
+  // Usando querys na URL para trazer o parâmetro da busca de algumas fontes:
+  // https://reactgo.com/react-get-query-params/
+  // https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-react-router
+  componentDidUpdate(prevProps) {
+    const { location: { search } } = this.props;
+    const { location: { search: prevSearch } } = prevProps;
+
+    if (prevSearch !== search) {
+      this.fetchProducts();
+    }
+  }
+
+  async fetchProducts() {
+    const { location: { search } } = this.props;
+    const query = new URLSearchParams(search).get('query');
+
+    this.setState({
+      loading: true,
+    }, async () => {
+      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', query);
+      this.setState({
+        list: response.results,
+        loading: false,
+      });
+    });
+  }
+
   render() {
-    const { empty } = this.state;
-    if (empty) {
+    const { list, loading } = this.state;
+
+    if (loading) return <p>Carregando...</p>;
+
+    if (list.length === 0) {
       return (
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
+        <p>Nenhum produto foi encontrado</p>
       );
     }
 
     return (
       <div>
-        Lista
+        {
+          list.map((product) => <ProductCard key={ product.id } product={ product } />)
+        }
       </div>
     );
   }
 }
+
+ProductList.propTypes = {
+  location: PropTypes.shape({
+    search: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProductList;

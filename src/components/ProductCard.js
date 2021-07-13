@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
@@ -7,11 +8,13 @@ class ProductCard extends React.Component {
     const { title, thumbnail_id: id, price } = product;
 
     return (
-      <div data-testid="product" onClick={() => getProductDetail(product) }>
-        <p>{ title }</p>
-        <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
-        <p>{ price }</p>
-      </div>
+      <Link to="/details">
+        <div data-testid="product" onClick={() => getProductDetail(product) }>
+          <p>{ title }</p>
+          <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
+          <p>{ price }</p>
+        </div>
+      </Link>
     );
   }
 }

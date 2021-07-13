@@ -8,13 +8,18 @@ class ProductCard extends React.Component {
     const { title, thumbnail_id: id, price } = product;
 
     return (
-      <Link to="/details">
-        <div data-testid="product" onClick={() => getProductDetail(product) }>
-          <p>{ title }</p>
-          <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
-          <p>{ price }</p>
-        </div>
-      </Link>
+      <div data-testid="product">
+        <p>{ title }</p>
+        <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
+        <p>{ price }</p>
+        <Link
+          onClick={ () => getProductDetail(product) }
+          data-testid="product-detail-link"
+          to="/details"
+        >
+          Ver Detalhes
+        </Link>
+      </div>
     );
   }
 }
@@ -25,6 +30,7 @@ ProductCard.propTypes = {
     thumbnail_id: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
+  getProductDetail: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
- 
   componentDidMount() {
     const { fetchProducts } = this.props;
     fetchProducts();
@@ -32,12 +31,11 @@ class ProductList extends React.Component {
     return (
       <div>
         {
-          list.map((product) => <ProductCard
+          list.map((product) => (<ProductCard
             key={ product.id }
             product={ product }
             getProductDetail={ getProductDetail }
-            />
-          )
+          />))
         }
       </div>
     );
@@ -45,7 +43,7 @@ class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  list: PropTypes.array.isRequired,
+  list: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
   fetchProducts: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,

@@ -47,7 +47,7 @@ class App extends React.Component {
   getProductDetail(product) {
     this.setState({
       productDetails: product,
-    })
+    });
   }
 
   fetchProducts() {
@@ -65,7 +65,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { categoryList, loading, list, productDetails, searchQuery, category } = this.state;
+    const {
+      categoryList,
+      loading,
+      list,
+      productDetails,
+      searchQuery,
+      category,
+    } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -77,18 +84,19 @@ class App extends React.Component {
               path="/search"
               render={ (props) => (<ProductList
                 { ...props }
-                query= { searchQuery }
-                category= { category }
+                query={ searchQuery }
+                category={ category }
                 list={ list }
                 loading={ loading }
                 fetchProducts={ this.fetchProducts }
-                getProductDetail= { this.getProductDetail }
+                getProductDetail={ this.getProductDetail }
               />) }
             />
             <Route
-              exact path="/details"
+              exact
+              path="/details"
               render={ (props) => (<ProductDetails
-                {...props}
+                { ...props }
                 product={ productDetails }
               />) }
             />

@@ -53,6 +53,7 @@ class App extends React.Component {
                 { ...props }
                 query={ searchQuery }
                 category={ category }
+                getState={ this.getState }
               />) }
             />
             <Route exact path="/" component={ StartMessage } />

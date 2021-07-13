@@ -1,4 +1,5 @@
 import React from 'react';
+import './SearchBar.css';
 import { Link } from 'react-router-dom';
 import BtnCart from './BtnCart';
 
@@ -25,7 +26,8 @@ class SearchBar extends React.Component {
     const { search } = this.state;
 
     return (
-      <form>
+      <header>
+        <img src="https://logospng.org/download/mercado-livre/logo-mercado-livre-256.png" alt="Logo Mercado Livre" />
         <input
           name="search"
           value={ search }
@@ -37,7 +39,7 @@ class SearchBar extends React.Component {
           <button data-testid="query-button" type="button">Procurar</button>
         </Link>
         <BtnCart />
-      </form>
+      </header>
     );
   }
 }

@@ -1,32 +1,21 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
 import './App.css';
+import StartMessage from './components/StartMessage';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.getState = this.getState.bind(this);
-
-    this.state = {
-      search: '',
-    };
-  }
-
-  getState(searchInput) {
-    this.setState({
-      search: searchInput,
-    });
-  }
-
   render() {
-    const { search } = this.state;
-
     return (
       <div className="App">
-        <SearchBar getState={ this.getState } />
-        <ProductList search={ search } />
+        <BrowserRouter>
+          <SearchBar />
+          <Switch>
+            <Route path="/search/:id" component={ ProductList } />
+            <Route exact path="/" component={ StartMessage } />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

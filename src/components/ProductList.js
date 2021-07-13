@@ -10,37 +10,41 @@ class ProductList extends React.Component {
     this.fetchProducts = this.fetchProducts.bind(this);
 
     this.state = {
-      empty: true,
+      loading: true,
       list: [],
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     this.fetchProducts();
   }
 
-  async fetchProducts() {
-    const { search } = this.props;
+  componentDidUpdate(prevProps) {
+    const { match: { params: { id } } } = this.props;
 
-    if (search !== '') {
-      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', search);
-      this.setState({
-        empty: false,
-        list: response.results,
-      });
+    if (prevProps.match.params.id !== id) {
+      this.fetchProducts();
     }
   }
 
-  render() {
-    const { empty, list } = this.state;
+  async fetchProducts() {
+    const { match: { params: { id } } } = this.props;
 
-    if (empty) {
-      return (
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-      );
-    }
+    this.setState({
+      loading: true,
+    }, async () => {
+      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', id);
+      this.setState({
+        list: response.results,
+        loading: false,
+      });
+    });
+  }
+
+  render() {
+    const { list, loading } = this.state;
+
+    if (loading) return <p>Carregando...</p>;
 
     if (list.length === 0) {
       return (
@@ -59,7 +63,11 @@ class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  search: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
 export default ProductList;

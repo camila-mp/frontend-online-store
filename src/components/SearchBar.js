@@ -36,7 +36,9 @@ class SearchBar extends React.Component {
 
     return (
       <header>
-        <img src="https://logospng.org/download/mercado-livre/logo-mercado-livre-256.png" alt="Logo Mercado Livre" />
+        <Link to="/">
+          <img src="https://logospng.org/download/mercado-livre/logo-mercado-livre-256.png" alt="Logo Mercado Livre" />
+        </Link>
         <input
           name="search"
           value={ search }

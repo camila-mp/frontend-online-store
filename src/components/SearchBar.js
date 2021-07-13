@@ -1,9 +1,12 @@
 import React from 'react';
+import BtnCart from './BtnCart';
 
 class SearchBar extends React.Component {
   render() {
     return (
-      <input type="text" placeholder="tem nada aqui ainda" />
+      <div>
+        <input type="text" placeholder="tem nada aqui ainda" />
+      </div>
     );
   }
 }

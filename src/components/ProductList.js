@@ -26,10 +26,7 @@ class ProductList extends React.Component {
     const { location: { search } } = this.props;
     const { location: { search: prevSearch } } = prevProps;
 
-    const query = new URLSearchParams(search).get('query');
-    const prevQuery = new URLSearchParams(prevSearch).get('query');
-
-    if (prevQuery !== query) {
+    if (prevSearch !== search) {
       this.fetchProducts();
     }
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
+import ShoppingCart from './components/ShoppingCart';
 import './App.css';
 import StartMessage from './components/StartMessage';
 import * as api from './services/api';
@@ -38,6 +39,7 @@ class App extends React.Component {
           <SearchBar />
           <CategoryFilter categoryList={ categoryList } />
           <Switch>
+            <Route exact path="/ShoppingCart" component={ ShoppingCart } />
             <Route path="/search" component={ ProductList } />
             <Route exact path="/" component={ StartMessage } />
           </Switch>

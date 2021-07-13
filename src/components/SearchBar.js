@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BtnCart from './BtnCart';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class SearchBar extends React.Component {
         <Link to={ `/search?query=${search}` }>
           <button data-testid="query-button" type="button">Procurar</button>
         </Link>
+        <BtnCart />
       </form>
     );
   }

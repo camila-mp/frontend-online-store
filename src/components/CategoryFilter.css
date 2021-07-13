@@ -1,0 +1,10 @@
+.category-filter {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.category-filter a {
+  margin: 5px 10px;
+  text-decoration: none;
+}

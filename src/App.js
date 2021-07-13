@@ -7,6 +7,7 @@ import './App.css';
 import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class App extends React.Component {
             </Switch>
           </section>
         </BrowserRouter>
+        <Footer />
       </div>
     );
   }

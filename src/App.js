@@ -32,7 +32,7 @@ class App extends React.Component {
 
   render() {
     const { categoryList } = this.state;
-       return (
+    return (
       <div className="App">
         <BrowserRouter>
           <SearchBar />

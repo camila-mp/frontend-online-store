@@ -6,6 +6,8 @@ class ProductCard extends React.Component {
     const { product } = this.props;
     const { title, thumbnail_id: id, price } = product;
 
+    console.log(product);
+
     return (
       <div data-testid="product">
         <p>{ title }</p>

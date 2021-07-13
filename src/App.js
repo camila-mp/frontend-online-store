@@ -7,6 +7,7 @@ import './App.css';
 import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
+import ProductDetails from './components/ProductDetails';
 
 class App extends React.Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class App extends React.Component {
                 category={ category }
               />) }
             />
+            <Route exact path="/details/:id" component={ ProductDetails} />
             <Route exact path="/" component={ StartMessage } />
           </Switch>
         </BrowserRouter>

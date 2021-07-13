@@ -19,6 +19,7 @@ class App extends React.Component {
       categoryList: [],
       category: '',
       searchQuery: '',
+      productDetails: {},
     };
   }
 
@@ -40,7 +41,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { categoryList, category, searchQuery } = this.state;
+    const { categoryList, category, searchQuery, productDetails } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -56,7 +57,10 @@ class App extends React.Component {
                 category={ category }
               />) }
             />
-            <Route exact path="/details/:id" component={ ProductDetails} />
+            <Route
+              exact path="/details"
+              render={ (props) => <ProductDetails {...props} product={ productDetails }/> } 
+            />
             <Route exact path="/" component={ StartMessage } />
           </Switch>
         </BrowserRouter>

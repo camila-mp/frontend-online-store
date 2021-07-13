@@ -57,7 +57,11 @@ class ProductList extends React.Component {
     return (
       <div>
         {
-          list.map((product) => <ProductCard key={ product.id } product={ product } getState={ getState } />)
+          list.map((product) => (<ProductCard
+            key={ product.id }
+            product={ product }
+            getState={ getState }
+          />))
         }
       </div>
     );

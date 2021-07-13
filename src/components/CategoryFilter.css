@@ -10,6 +10,7 @@
 }
 
 .category-filter a {
+  color: rgb(75, 73, 73);
   margin: 5px 15px;
   text-decoration: none;
 }

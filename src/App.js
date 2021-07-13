@@ -12,8 +12,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.getState = this.getState.bind(this);
+
     this.state = {
       categoryList: [],
+      category: '',
+      searchQuery: '',
     };
   }
 
@@ -28,16 +32,29 @@ class App extends React.Component {
     });
   }
 
+  getState(search) {
+    this.setState({
+      searchQuery: search,
+    });
+  }
+
   render() {
-    const { categoryList } = this.state;
+    const { categoryList, category, searchQuery } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
-          <SearchBar />
+          <SearchBar getState={ this.getState } />
           <CategoryFilter categoryList={ categoryList } />
           <Switch>
             <Route exact path="/ShoppingCart" component={ ShoppingCart } />
-            <Route path="/search" component={ ProductList } />
+            <Route
+              path="/search"
+              render={ (props) => (<ProductList
+                { ...props }
+                query={ searchQuery }
+                category={ category }
+              />) }
+            />
             <Route exact path="/" component={ StartMessage } />
           </Switch>
         </BrowserRouter>

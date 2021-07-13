@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './SearchBar.css';
-import { Link } from 'react-router-dom';
 import BtnCart from './BtnCart';
 
 class SearchBar extends React.Component {
@@ -8,6 +8,7 @@ class SearchBar extends React.Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       search: '',
@@ -20,6 +21,14 @@ class SearchBar extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const { getState } = this.props;
+    const { search } = this.state;
+
+    getState(search);
   }
 
   render() {
@@ -35,13 +44,21 @@ class SearchBar extends React.Component {
           type="text"
           onChange={ this.handleChange }
         />
-        <Link to={ `/search?query=${search}` }>
-          <button data-testid="query-button" type="button">Procurar</button>
-        </Link>
+        <button
+          data-testid="query-button"
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Procurar
+        </button>
         <BtnCart />
       </header>
     );
   }
 }
+
+SearchBar.propTypes = {
+  getState: PropTypes.func.isRequired,
+};
 
 export default SearchBar;

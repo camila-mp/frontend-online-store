@@ -23,17 +23,16 @@ class ProductList extends React.Component {
   // https://reactgo.com/react-get-query-params/
   // https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-react-router
   componentDidUpdate(prevProps) {
-    const { location: { search } } = this.props;
-    const { location: { search: prevSearch } } = prevProps;
-
-    if (prevSearch !== search) {
+    const { query } = this.props;
+    const { prevQuery } = prevProps;
+    console.log(query, prevQuery);
+    if (prevQuery !== query) {
       this.fetchProducts();
     }
   }
 
   async fetchProducts() {
-    const { location: { search } } = this.props;
-    const query = new URLSearchParams(search).get('query');
+    const { query, category } = this.props;
 
     this.setState({
       loading: true,

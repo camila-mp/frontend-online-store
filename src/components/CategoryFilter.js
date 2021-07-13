@@ -1,30 +1,9 @@
 import React from 'react';
-import * as api from '../services/api';
+import PropTypes from 'prop-types';
 
 class CategoryFilter extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.getCategoryList = this.getCategoryList.bind(this);
-    this.state = {
-      categoryList: [],
-    };
-  }
-
-  componentDidMount() {
-    this.getCategoryList();
-  }
-
-  async getCategoryList() {
-    const list = await api.getCategories();
-    this.setState({
-      categoryList: list,
-    });
-  }
-
   render() {
-    const { categoryList } = this.state;
-
+    const { categoryList } = this.props;
     return (
       <div className="category-filter">
         {categoryList.map((item) => (
@@ -36,5 +15,9 @@ class CategoryFilter extends React.Component {
     );
   }
 }
+
+CategoryFilter.propTypes = {
+  categoryList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default CategoryFilter;

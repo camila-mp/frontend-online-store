@@ -38,6 +38,7 @@ class CategoryFilter extends React.Component {
 
 CategoryFilter.propTypes = {
   categoryList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getState: PropTypes.func.isRequired,
 };
 
 export default CategoryFilter;

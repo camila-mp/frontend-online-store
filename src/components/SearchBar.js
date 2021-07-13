@@ -6,6 +6,7 @@ class SearchBar extends React.Component {
     return (
       <div>
         <input type="text" placeholder="tem nada aqui ainda" />
+        <BtnCart />
       </div>
     );
   }

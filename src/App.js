@@ -1,7 +1,9 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
 import './App.css';
+import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
 
@@ -32,9 +34,14 @@ class App extends React.Component {
     const { categoryList } = this.state;
     return (
       <div className="App">
-        <SearchBar />
-        <CategoryFilter categoryList={ categoryList } />
-        <ProductList />
+        <BrowserRouter>
+          <SearchBar />
+          <CategoryFilter categoryList={ categoryList } />
+          <Switch>
+            <Route path="/search" component={ ProductList } />
+            <Route exact path="/" component={ StartMessage } />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

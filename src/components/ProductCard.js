@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, getProductDetail } = this.props;
     const { title, thumbnail_id: id, price } = product;
 
     return (
-      <div data-testid="product">
+      <div data-testid="product" onClick={() => getProductDetail(product) }>
         <p>{ title }</p>
         <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
         <p>{ price }</p>

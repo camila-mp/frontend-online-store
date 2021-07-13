@@ -15,6 +15,7 @@ class App extends React.Component {
 
     this.getState = this.getState.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.getProductDetail = this.getProductDetail.bind(this);
 
     this.state = {
       categoryList: [],
@@ -41,6 +42,12 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  getProductDetail(product) {
+    this.setState({
+      productDetails: product,
+    })
   }
 
   fetchProducts() {
@@ -75,6 +82,7 @@ class App extends React.Component {
                 list={ list }
                 loading={ loading }
                 fetchProducts={ this.fetchProducts }
+                getProductDetail= { this.getProductDetail }
               />) }
             />
             <Route

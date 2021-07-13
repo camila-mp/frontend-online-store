@@ -16,3 +16,16 @@
 .main-container {
   flex-grow: 1;
 }
+
+.main-message {
+  color: rgb(75, 73, 73);
+  font-size: 34px;
+  font-weight: 600;
+  padding-bottom: 50px;
+  padding-top: 100px;
+}
+
+.magnifier {
+  color: rgb(75, 73, 73);
+  font-size: 200px;
+}

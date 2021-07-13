@@ -5,12 +5,11 @@ class StartMessage extends React.Component {
     return (
       <div className="main-container">
         <p
-          className="main-message"
           data-testid="home-initial-message"
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <i className="bi bi-search magnifier" />
+        <i className="bi bi-search main-container-icon" />
       </div>
     );
   }

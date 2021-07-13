@@ -49,12 +49,15 @@ class ProductList extends React.Component {
 
     if (list.length === 0) {
       return (
-        <p className="main-container">Nenhum produto foi encontrado</p>
+        <div className="main-container">
+          <p>Nenhum produto foi encontrado</p>
+          <i className="bi bi-x-circle main-container-icon" />
+        </div>
       );
     }
 
     return (
-      <div className="main-container">
+      <div className="product-container">
         {
           list.map((product) => <ProductCard key={ product.id } product={ product } />)
         }

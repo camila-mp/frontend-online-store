@@ -17,9 +17,6 @@ class App extends React.Component {
     };
   }
 
-  // o componentDidMount() faz o 'bind' pra gente :)
-  // funçoes chamadas dentro do componentDidMount() sao reconhecidas, pois estao dentro de uma funçao nativa
-
   componentDidMount() {
     this.getCategoryList();
   }

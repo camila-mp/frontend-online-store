@@ -12,13 +12,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.getState = this.getState.bind(this);
+
     this.state = {
       categoryList: [],
+      category: '',
+      searchQuery: '',
     };
   }
-
-  // o componentDidMount() faz o 'bind' pra gente :)
-  // funçoes chamadas dentro do componentDidMount() sao reconhecidas, pois estao dentro de uma funçao nativa
 
   componentDidMount() {
     this.getCategoryList();
@@ -31,16 +32,29 @@ class App extends React.Component {
     });
   }
 
+  getState(name, value) {
+    this.setState({
+      [name]: value,
+    });
+  }
+
   render() {
-    const { categoryList } = this.state;
+    const { categoryList, category, searchQuery } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
-          <SearchBar />
-          <CategoryFilter categoryList={ categoryList } />
+          <SearchBar getState={ this.getState } />
+          <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
           <Switch>
             <Route exact path="/ShoppingCart" component={ ShoppingCart } />
-            <Route path="/search" component={ ProductList } />
+            <Route
+              path="/search"
+              render={ (props) => (<ProductList
+                { ...props }
+                query={ searchQuery }
+                category={ category }
+              />) }
+            />
             <Route exact path="/" component={ StartMessage } />
           </Switch>
         </BrowserRouter>

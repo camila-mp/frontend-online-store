@@ -19,26 +19,22 @@ class ProductList extends React.Component {
     this.fetchProducts();
   }
 
-  // Usando querys na URL para trazer o parâmetro da busca de algumas fontes:
-  // https://reactgo.com/react-get-query-params/
-  // https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-react-router
   componentDidUpdate(prevProps) {
-    const { location: { search } } = this.props;
-    const { location: { search: prevSearch } } = prevProps;
+    const { query, category } = this.props;
+    const { query: prevQuery, category: prevCategory } = prevProps;
 
-    if (prevSearch !== search) {
+    if (prevQuery !== query || prevCategory !== category) {
       this.fetchProducts();
     }
   }
 
   async fetchProducts() {
-    const { location: { search } } = this.props;
-    const query = new URLSearchParams(search).get('query');
+    const { query, category } = this.props;
 
     this.setState({
       loading: true,
     }, async () => {
-      const response = await api.getProductsFromCategoryAndQuery('$CATEGORY_ID', query);
+      const response = await api.getProductsFromCategoryAndQuery(category, query);
       this.setState({
         list: response.results,
         loading: false,
@@ -68,9 +64,8 @@ class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  location: PropTypes.shape({
-    search: PropTypes.string.isRequired,
-  }).isRequired,
+  query: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default ProductList;

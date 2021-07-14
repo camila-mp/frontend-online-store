@@ -18,7 +18,6 @@ class ProductList extends React.Component {
   }
 
   render() {
-
     const { list, loading, getProductDetail, addToCart } = this.props;
 
     if (loading) return <p>Carregando...</p>;

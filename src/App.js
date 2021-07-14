@@ -46,16 +46,16 @@ class App extends React.Component {
     });
   }
 
-  addToCart(newProduct) {
-    this.setState((prevState) => ({
-      cartProducts: [...prevState.cartProducts, newProduct],
-    }));
-  }
-
   getProductDetail(product) {
     this.setState({
       productDetails: product,
     });
+  }
+
+  addToCart(newProduct) {
+    this.setState((prevState) => ({
+      cartProducts: [...prevState.cartProducts, newProduct],
+    }));
   }
 
   fetchProducts() {

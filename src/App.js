@@ -7,17 +7,23 @@ import './App.css';
 import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
+import ProductDetails from './components/ProductDetails';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.getState = this.getState.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
+    this.getProductDetail = this.getProductDetail.bind(this);
 
     this.state = {
       categoryList: [],
       category: '',
       searchQuery: '',
+      productDetails: {},
+      list: [],
+      loading: true,
     };
   }
 
@@ -38,8 +44,35 @@ class App extends React.Component {
     });
   }
 
+  getProductDetail(product) {
+    this.setState({
+      productDetails: product,
+    });
+  }
+
+  fetchProducts() {
+    const { searchQuery, category } = this.state;
+
+    this.setState({
+      loading: true,
+    }, async () => {
+      const response = await api.getProductsFromCategoryAndQuery(category, searchQuery);
+      this.setState({
+        list: response.results,
+        loading: false,
+      });
+    });
+  }
+
   render() {
-    const { categoryList, category, searchQuery } = this.state;
+    const {
+      categoryList,
+      loading,
+      list,
+      productDetails,
+      searchQuery,
+      category,
+    } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -53,6 +86,18 @@ class App extends React.Component {
                 { ...props }
                 query={ searchQuery }
                 category={ category }
+                list={ list }
+                loading={ loading }
+                fetchProducts={ this.fetchProducts }
+                getProductDetail={ this.getProductDetail }
+              />) }
+            />
+            <Route
+              exact
+              path="/details"
+              render={ (props) => (<ProductDetails
+                { ...props }
+                product={ productDetails }
               />) }
             />
             <Route exact path="/" component={ StartMessage } />

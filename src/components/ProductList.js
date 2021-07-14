@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
+import './ProductList.css';
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -20,16 +21,19 @@ class ProductList extends React.Component {
   render() {
     const { list, loading, getProductDetail, addToCart } = this.props;
 
-    if (loading) return <p>Carregando...</p>;
+    if (loading) return <p className="main-container">Carregando...</p>;
 
     if (list.length === 0) {
       return (
-        <p>Nenhum produto foi encontrado</p>
+        <div className="main-container">
+          <p>Nenhum produto foi encontrado</p>
+          <i className="bi bi-x-circle main-container-icon" />
+        </div>
       );
     }
 
     return (
-      <div>
+      <div className="product-container">
         {
           list.map((product) => (<ProductCard
             key={ product.id }

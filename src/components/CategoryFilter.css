@@ -1,0 +1,16 @@
+.category-filter {
+  border: 1px solid rgb(146, 143, 143);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  min-width: 250px;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.category-filter a {
+  color: rgb(75, 73, 73);
+  margin: 5px 15px;
+  text-decoration: none;
+}

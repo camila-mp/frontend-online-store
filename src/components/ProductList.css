@@ -1,0 +1,7 @@
+.product-container {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+}

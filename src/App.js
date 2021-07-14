@@ -7,6 +7,7 @@ import './App.css';
 import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
+import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 
 class App extends React.Component {
@@ -87,41 +88,44 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <SearchBar getState={ this.getState } />
-          <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
-          <Switch>
-            <Route
-              exact
-              path="/shopping-cart"
-              render={ (props) => (<ShoppingCart
-                { ...props }
-                cartProducts={ cartProducts }
-              />) }
-            />
-            <Route
-              path="/search"
-              render={ (props) => (<ProductList
-                { ...props }
-                query={ searchQuery }
-                category={ category }
-                addToCart={ this.addToCart }
-                list={ list }
-                loading={ loading }
-                fetchProducts={ this.fetchProducts }
-                getProductDetail={ this.getProductDetail }
-              />) }
-            />
-            <Route
-              exact
-              path="/details"
-              render={ (props) => (<ProductDetails
-                { ...props }
-                product={ productDetails }
-                addToCart={ this.addToCart }
-              />) }
-            />
-            <Route exact path="/" component={ StartMessage } />
-          </Switch>
+          <section className="body-container">
+            <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
+            <Switch>
+              <Route
+                exact
+                path="/shopping-cart"
+                render={ (props) => (<ShoppingCart
+                  { ...props }
+                  cartProducts={ cartProducts }
+                />) }
+              />
+              <Route
+                path="/search"
+                render={ (props) => (<ProductList
+                  { ...props }
+                  query={ searchQuery }
+                  category={ category }
+                  addToCart={ this.addToCart }
+                  list={ list }
+                  loading={ loading }
+                  fetchProducts={ this.fetchProducts }
+                  getProductDetail={ this.getProductDetail }
+                />) }
+              />
+              <Route
+                exact
+                path="/details"
+                render={ (props) => (<ProductDetails
+                  { ...props }
+                  product={ productDetails }
+                  addToCart={ this.addToCart }
+                />) }
+              />
+              <Route exact path="/" component={ StartMessage } />
+            </Switch>
+          </section>
         </BrowserRouter>
+        <Footer />
       </div>
     );
   }

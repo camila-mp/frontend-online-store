@@ -27,6 +27,7 @@ header button {
   border-radius: 8px;
   box-shadow: 1px 1px 1px black;
   color: #333;
+  cursor: pointer;
   margin-left: 15px;
   padding: 8px 20px;
 }

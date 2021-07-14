@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './ProductCard.css';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -19,10 +20,12 @@ class ProductCard extends React.Component {
     const { title, thumbnail_id: id, price } = product;
 
     return (
-      <div data-testid="product">
-        <p>{ title }</p>
-        <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
-        <p>{ price }</p>
+      <div data-testid="product" className="product-card">
+        <p className="product-card-title">{ title }</p>
+        <div className="product-card-image-div">
+          <img className="product-card-image" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
+        </div>
+        <p className="product-card-price">{ `R$ ${price.toFixed(2)}` }</p>
         <button
           type="button"
           onClick={ this.handleClick }

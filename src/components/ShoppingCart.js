@@ -31,7 +31,6 @@ class ShoppingCart extends Component {
         ];
       }
     });
-    console.log(filteredProducts);
     this.setState({
       filteredProducts,
     });

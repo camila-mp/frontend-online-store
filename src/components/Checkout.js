@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import Input from './Input';
 
 class Checkout extends React.Component {
-  componentDidMount() {
-    const { productAmountFilter } = this.props;
-    productAmountFilter();
-  }
   renderBuyerInfo() {
     const {
       onChangeHandle,
@@ -79,16 +75,21 @@ class Checkout extends React.Component {
 
   render() {
     const { filteredProducts } = this.props;
+    let total = 0;
     return (
       <div>
         <div>
-          { filteredProducts.map(({ amount, product }) => (
-          <div key={ product.id }>
-            <p>{ product.title }</p>
-            <p>{`Quantidade: ${amount}`}</p>
-            <p>{`Preco: ${product.price}`}</p>
-          </div>
-          ))}
+          { filteredProducts.map(({ amount, product }) => {
+            total += Number(product.price) * amount;
+            return (
+              <div key={ product.id }>
+                <p>{ product.title }</p>
+                <p>{`Quantidade: ${amount}`}</p>
+                <p>{`Preco: ${product.price}`}</p>
+              </div>
+            );
+          })}
+          <p>{total}</p>
         </div>
         <form>
           { this.renderBuyerInfo() }

@@ -171,7 +171,6 @@ class App extends React.Component {
                 render={ (props) => (<Checkout
                   { ...props }
                   filteredProducts={ filteredProducts }
-                  productAmountFilter={ this.productAmountFilter }
                   onChangeHandle={ this.onChangeHandle }
                   nomeCompleto={ nomeCompleto }
                   email={ email }

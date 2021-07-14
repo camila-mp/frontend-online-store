@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 import './ProductList.css';
-import { Link } from 'react-router-dom';
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -35,7 +34,6 @@ class ProductList extends React.Component {
 
     return (
       <div className="product-container">
-        <Link to="/checkout">chekout</Link>
         {
           list.map((product) => (<ProductCard
             key={ product.id }

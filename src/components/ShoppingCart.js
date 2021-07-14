@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CartProductCard from './CartProductCard';
+import { Link } from 'react-router-dom';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -53,7 +54,11 @@ class ShoppingCart extends Component {
           product={ item.product }
           amount={ item.amount }
         />)) }
+        <Link to="/checkout">
+          <button data-testid="checkout-products">Finalizar Compra!</button>
+        </Link>
       </div>
+      
     );
   }
 }

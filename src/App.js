@@ -9,6 +9,7 @@ import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
+import Checkout from './components/Checkout';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,12 @@ class App extends React.Component {
       productDetails: {},
       list: [],
       loading: true,
+      nomeCompleto: '',
+      email: '',
+      cpf: '',
+      telefone: '',
+      cep: '',
+      endereco: '',
     };
   }
 
@@ -73,6 +80,13 @@ class App extends React.Component {
     });
   }
 
+  onChangeHandle({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
   render() {
     const {
       categoryList,
@@ -82,6 +96,12 @@ class App extends React.Component {
       searchQuery,
       category,
       cartProducts,
+      nomeCompleto,
+      email,
+      cpf,
+      telefone,
+      cep,
+      endereco,
     } = this.state;
 
     return (
@@ -119,6 +139,20 @@ class App extends React.Component {
                   { ...props }
                   product={ productDetails }
                   addToCart={ this.addToCart }
+                />) }
+              />
+              <Route
+                exact
+                path="/checkout"
+                render={ (props) => (<Checkout
+                  { ...props }
+                  onChangeHandle={ this.onChangeHandle }
+                  nomeCompleto={ nomeCompleto }
+                  email={ email }
+                  cpf={ cpf }
+                  telefone={ telefone }
+                  cep={ cep }
+                  endereco={ endereco }
                 />) }
               />
               <Route exact path="/" component={ StartMessage } />

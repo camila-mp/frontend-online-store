@@ -8,17 +8,25 @@ import StartMessage from './components/StartMessage';
 import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
 import Footer from './components/Footer';
+import ProductDetails from './components/ProductDetails';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.getState = this.getState.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
+    this.getProductDetail = this.getProductDetail.bind(this);
 
     this.state = {
       categoryList: [],
       category: '',
       searchQuery: '',
+      cartProducts: [],
+      productDetails: {},
+      list: [],
+      loading: true,
     };
   }
 
@@ -39,8 +47,43 @@ class App extends React.Component {
     });
   }
 
+  getProductDetail(product) {
+    this.setState({
+      productDetails: product,
+    });
+  }
+
+  addToCart(newProduct) {
+    this.setState((prevState) => ({
+      cartProducts: [...prevState.cartProducts, newProduct],
+    }));
+  }
+
+  fetchProducts() {
+    const { searchQuery, category } = this.state;
+
+    this.setState({
+      loading: true,
+    }, async () => {
+      const response = await api.getProductsFromCategoryAndQuery(category, searchQuery);
+      this.setState({
+        list: response.results,
+        loading: false,
+      });
+    });
+  }
+
   render() {
-    const { categoryList, category, searchQuery } = this.state;
+    const {
+      categoryList,
+      loading,
+      list,
+      productDetails,
+      searchQuery,
+      category,
+      cartProducts,
+    } = this.state;
+
     return (
       <div className="App">
         <BrowserRouter>
@@ -48,13 +91,33 @@ class App extends React.Component {
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
             <Switch>
-              <Route exact path="/ShoppingCart" component={ ShoppingCart } />
+              <Route
+                exact
+                path="/shopping-cart"
+                render={ (props) => (<ShoppingCart
+                  { ...props }
+                  cartProducts={ cartProducts }
+                />) }
+              />
               <Route
                 path="/search"
                 render={ (props) => (<ProductList
                   { ...props }
                   query={ searchQuery }
                   category={ category }
+                  addToCart={ this.addToCart }
+                  list={ list }
+                  loading={ loading }
+                  fetchProducts={ this.fetchProducts }
+                  getProductDetail={ this.getProductDetail }
+                />) }
+              />
+              <Route
+                exact
+                path="/details"
+                render={ (props) => (<ProductDetails
+                  { ...props }
+                  product={ productDetails }
                 />) }
               />
               <Route exact path="/" component={ StartMessage } />

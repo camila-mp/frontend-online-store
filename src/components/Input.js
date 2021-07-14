@@ -6,16 +6,17 @@ class Input extends React.Component {
     const { label, type, value, name, testid, onChangeHandle, isRequired } = this.props;
     if (type === 'checkbox') {
       return (
-        <input
-          name={ name }
-          type={ type }
-          value={ value }
-          data-testeid={ testid }
-          onChange={ onChangeHandle }
-          checked={ isRequired }
-        >
-         <label>{ label }</label>
-        </input>
+        <div>
+          <input
+            name={ name }
+            type={ type }
+            value={ value }
+            data-testeid={ testid }
+            onChange={ onChangeHandle }
+            checked={ isRequired }
+          />
+          <label htmlFor={ name }>{ label }</label>
+        </div>
       );
     }
     return (
@@ -36,8 +37,9 @@ class Input extends React.Component {
 
 Input.defaultProps = {
   label: '',
+  testid: '',
   isRequired: false,
-}
+};
 
 Input.propTypes = {
   label: PropTypes.string,
@@ -47,7 +49,7 @@ Input.propTypes = {
     PropTypes.number,
   ]).isRequired,
   name: PropTypes.string.isRequired,
-  testid: PropTypes.string.isRequired,
+  testid: PropTypes.string,
   onChangeHandle: PropTypes.func.isRequired,
   isRequired: PropTypes.bool,
 };

@@ -20,6 +20,7 @@ class App extends React.Component {
     this.fetchProducts = this.fetchProducts.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
     this.onChangeHandle = this.onChangeHandle.bind(this);
+    this.productAmountFilter = this.productAmountFilter.bind(this);
 
     this.state = {
       categoryList: [],
@@ -35,6 +36,7 @@ class App extends React.Component {
       telefone: '',
       cep: '',
       endereco: '',
+      filteredProducts: [],
     };
   }
 
@@ -88,6 +90,24 @@ class App extends React.Component {
     });
   }
 
+  productAmountFilter() {
+    const { cartProducts } = this.state;
+    let filteredProducts = [];
+    cartProducts.forEach((product) => {
+      if (!filteredProducts.some((element) => element.product.id === product.id)) {
+        const productArray = cartProducts.filter((item) => product.id === item.id);
+        filteredProducts = [
+          ...filteredProducts,
+          { amount: productArray.length, product },
+        ];
+      }
+    });
+    this.setState({
+      filteredProducts,
+    });
+  }
+
+
   render() {
     const {
       categoryList,
@@ -103,6 +123,7 @@ class App extends React.Component {
       telefone,
       cep,
       endereco,
+      filteredProducts,
     } = this.state;
 
     return (
@@ -118,6 +139,8 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
+                  productAmountFilter= { this.productAmountFilter }
+                  filteredProducts= { filteredProducts }
                 />) }
               />
               <Route
@@ -131,6 +154,7 @@ class App extends React.Component {
                   loading={ loading }
                   fetchProducts={ this.fetchProducts }
                   getProductDetail={ this.getProductDetail }
+                  getState={ this.getState }
                 />) }
               />
               <Route
@@ -147,6 +171,7 @@ class App extends React.Component {
                 path="/checkout"
                 render={ (props) => (<Checkout
                   { ...props }
+                  cartProducts={ filteredProducts }
                   onChangeHandle={ this.onChangeHandle }
                   nomeCompleto={ nomeCompleto }
                   email={ email }

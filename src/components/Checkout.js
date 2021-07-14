@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Input from './Input';
 
 class Checkout extends React.Component {
+  componentDidMount() {
+    
+  }
   renderBuyerInfo() {
     const {
       onChangeHandle,
@@ -74,10 +77,15 @@ class Checkout extends React.Component {
   }
 
   render() {
+    const { cartProducts } = this.props;
     return (
       <div>
         <div>
-          itens comprados
+          { cartProducts.map((product) => (
+          <div key={ product.id }>
+            <p>{ product.title }</p>
+          </div>
+          ))}
         </div>
         <form>
           { this.renderBuyerInfo() }

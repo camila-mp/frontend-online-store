@@ -7,39 +7,22 @@ class ShoppingCart extends Component {
     super(props);
 
     this.checkCart = this.checkCart.bind(this);
-    this.productAmountFilter = this.productAmountFilter.bind(this);
+
     this.state = {
       empty: true,
-      filteredProducts: [],
     };
   }
 
   componentDidMount() {
+    const { productAmountFilter } = this.props;
     this.checkCart();
-    this.productAmountFilter();
-  }
-
-  productAmountFilter() {
-    const { cartProducts } = this.props;
-    let filteredProducts = [];
-    cartProducts.forEach((product) => {
-      if (!filteredProducts.some((element) => element.product.id === product.id)) {
-        const productArray = cartProducts.filter((item) => product.id === item.id);
-        filteredProducts = [
-          ...filteredProducts,
-          { amount: productArray.length, product },
-        ];
-      }
-    });
-    this.setState({
-      filteredProducts,
-    });
+    productAmountFilter();
   }
 
   componentDidUpdade(prevProps) {
-    const { cartProducts } = this.props;
+    const { cartProducts, productAmountFilter } = this.props;
     if (prevProps.cartProducts.length !== cartProducts.length) {
-      this.productAmountfilter();
+      productAmountFilter();
     }
   }
 
@@ -53,7 +36,8 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    const { empty, filteredProducts } = this.state;
+    const { empty } = this.state;
+    const { filteredProducts } = this.props;
     if (empty) {
       return (
         <div>

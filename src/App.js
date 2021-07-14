@@ -13,11 +13,13 @@ class App extends React.Component {
     super(props);
 
     this.getState = this.getState.bind(this);
+    this.addToCart = this.addToCart.bind(this);
 
     this.state = {
       categoryList: [],
       category: '',
       searchQuery: '',
+      cartProducts: [],
     };
   }
 
@@ -38,22 +40,35 @@ class App extends React.Component {
     });
   }
 
+  addToCart(newProduct) {
+    this.setState((prevState) => ({
+      cartProducts: [...prevState.cartProducts, newProduct],
+    }));
+  }
+
   render() {
-    const { categoryList, category, searchQuery } = this.state;
+    const { categoryList, category, searchQuery, cartProducts } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
           <SearchBar getState={ this.getState } />
           <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
           <Switch>
-            <Route exact path="/ShoppingCart" component={ ShoppingCart } />
+            <Route
+              exact
+              path="/shopping-cart"
+              render={ (props) => (<ShoppingCart
+                { ...props }
+                cartProducts={ cartProducts }
+              />) }
+            />
             <Route
               path="/search"
               render={ (props) => (<ProductList
                 { ...props }
                 query={ searchQuery }
                 category={ category }
-                getState={ this.getState }
+                addToCart={ this.addToCart }
               />) }
             />
             <Route exact path="/" component={ StartMessage } />

@@ -44,7 +44,7 @@ class ProductList extends React.Component {
 
   render() {
     const { list, loading } = this.state;
-    const { getState } = this.props;
+    const { addToCart } = this.props;
 
     if (loading) return <p>Carregando...</p>;
 
@@ -60,7 +60,7 @@ class ProductList extends React.Component {
           list.map((product) => (<ProductCard
             key={ product.id }
             product={ product }
-            getState={ getState }
+            addToCart={ addToCart }
           />))
         }
       </div>
@@ -71,7 +71,7 @@ class ProductList extends React.Component {
 ProductList.propTypes = {
   query: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  getState: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;

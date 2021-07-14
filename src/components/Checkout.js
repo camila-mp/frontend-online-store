@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Input from './Input';
 
 class Checkout extends React.Component {
+  renderBuyerInfo() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -9,9 +18,7 @@ class Checkout extends React.Component {
           itens comprados
         </div>
         <form>
-          <div>
-            info comprador
-          </div>
+          { this.renderBuyerInfo() }
           <div>
             metodo pagamento
           </div>

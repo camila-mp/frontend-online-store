@@ -13,10 +13,10 @@ class ProductCard extends React.Component {
     };
   }
 
-  handleClick({ target: { name }) {
+  handleClick({ target: { name } }) {
     const { getState } = this.props;
 
-    getState(name, )
+    getState();
   }
 
   render() {
@@ -44,6 +44,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  getState: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail_id: PropTypes.string.isRequired,

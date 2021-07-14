@@ -5,7 +5,7 @@ import './BtnCart.css';
 class BtnCart extends Component {
   render() {
     return (
-      <Link to="/ShoppingCart" className="shopping-cart-button">
+      <Link to="/shopping-cart" className="shopping-cart-button">
         <i className="bi bi-cart2" data-testid="shopping-cart-button" />
       </Link>
     );

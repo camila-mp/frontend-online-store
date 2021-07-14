@@ -56,7 +56,7 @@ class ShoppingCart extends Component {
     const { empty, filteredProducts } = this.state;
     if (empty) {
       return (
-        <div>
+        <div className="main-container">
           <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
         </div>
       );

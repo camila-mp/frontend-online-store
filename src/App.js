@@ -19,6 +19,7 @@ class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
+    this.onChangeHandle = this.onChangeHandle.bind(this);
 
     this.state = {
       categoryList: [],
@@ -41,16 +42,23 @@ class App extends React.Component {
     this.getCategoryList();
   }
 
-  async getCategoryList() {
-    const list = await api.getCategories();
+  onChangeHandle({ target }) {
+    const { name, value } = target;
     this.setState({
-      categoryList: list,
+      [name]: value,
     });
   }
 
   getState(name, value) {
     this.setState({
       [name]: value,
+    });
+  }
+
+  async getCategoryList() {
+    const list = await api.getCategories();
+    this.setState({
+      categoryList: list,
     });
   }
 
@@ -77,13 +85,6 @@ class App extends React.Component {
         list: response.results,
         loading: false,
       });
-    });
-  }
-
-  onChangeHandle({ target }) {
-    const { name, value } = target;
-    this.setState({
-      [name]: value,
     });
   }
 

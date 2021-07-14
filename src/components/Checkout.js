@@ -22,7 +22,7 @@ class Checkout extends React.Component {
           name="nomeCompleto"
           testid="checkout-fullname"
           onChangeHandle={ onChangeHandle }
-          isRequired={ true }
+          isRequired
         />
         <Input
           label="Email:"
@@ -31,7 +31,7 @@ class Checkout extends React.Component {
           name="email"
           testid="checkout-email"
           onChangeHandle={ onChangeHandle }
-          isRequired={ true }
+          isRequired
         />
         <Input
           label="CPF:"
@@ -40,25 +40,25 @@ class Checkout extends React.Component {
           name="cpf"
           testid="checkout-cpf"
           onChangeHandle={ onChangeHandle }
-          isRequired={ true }
+          isRequired
         />
         <Input
           label="Telefone:"
-          type="number"
+          type="text"
           value={ telefone }
           name="telefone"
           testid="checkout-phone"
           onChangeHandle={ onChangeHandle }
-          isRequired={ true }
+          isRequired
         />
         <Input
           label="CEP:"
-          type="number"
+          type="text"
           value={ cep }
           name="cep"
           testid="checkout-cep"
           onChangeHandle={ onChangeHandle }
-          isRequired={ true }
+          isRequired
         />
         <Input
           label="Endereço:"
@@ -67,7 +67,7 @@ class Checkout extends React.Component {
           name="endereco"
           testid="checkout-address"
           onChangeHandle={ onChangeHandle }
-          isRequired={ true }
+          isRequired
         />
       </div>
     );
@@ -99,7 +99,7 @@ Checkout.propTypes = {
   email: PropTypes.string.isRequired,
   cpf: PropTypes.string.isRequired,
   telefone: PropTypes.string.isRequired,
-  cep:PropTypes.number.isRequired,
+  cep: PropTypes.string.isRequired,
   endereco: PropTypes.string.isRequired,
 };
 

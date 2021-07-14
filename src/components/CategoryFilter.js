@@ -19,7 +19,7 @@ class CategoryFilter extends React.Component {
   render() {
     const { categoryList } = this.props;
     return (
-      <div>
+      <div className="category-filter">
         {categoryList.map((item) => (
           <Link
             to="/search"

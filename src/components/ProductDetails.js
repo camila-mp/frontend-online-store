@@ -30,7 +30,6 @@ class ProductDetails extends React.Component {
     const { permalink } = seller;
     const { city_name: cityName, state_name: stateName } = address;
     const { free_shipping: freeShipping } = shipping;
-    console.log(product);
 
     return (
       <div>

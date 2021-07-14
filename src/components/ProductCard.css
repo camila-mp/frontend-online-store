@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   height: 90%;
+  text-decoration: none;
 }
 
 .product-card-title {
@@ -32,7 +33,6 @@
   order: 3;
   padding: 10px;
   text-align: justify;
-  max-height: 100px;
 }
 
 .product-card-image-div {
@@ -62,7 +62,12 @@
   background-color: #3483fa;
   border: none;
   border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
   height: 40px;
+  letter-spacing: 1px;
   margin-bottom: 10px;
   width: 230px;
 }

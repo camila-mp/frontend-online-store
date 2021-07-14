@@ -4,7 +4,8 @@ import Input from './Input';
 
 class Checkout extends React.Component {
   componentDidMount() {
-    
+    const { productAmountFilter } = this.props;
+    productAmountFilter();
   }
   renderBuyerInfo() {
     const {
@@ -77,13 +78,15 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { cartProducts } = this.props;
+    const { filteredProducts } = this.props;
     return (
       <div>
         <div>
-          { cartProducts.map((product) => (
+          { filteredProducts.map(({ amount, product }) => (
           <div key={ product.id }>
             <p>{ product.title }</p>
+            <p>{`Quantidade: ${amount}`}</p>
+            <p>{`Preco: ${product.price}`}</p>
           </div>
           ))}
         </div>

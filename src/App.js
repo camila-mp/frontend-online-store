@@ -154,7 +154,6 @@ class App extends React.Component {
                   loading={ loading }
                   fetchProducts={ this.fetchProducts }
                   getProductDetail={ this.getProductDetail }
-                  getState={ this.getState }
                 />) }
               />
               <Route
@@ -171,7 +170,8 @@ class App extends React.Component {
                 path="/checkout"
                 render={ (props) => (<Checkout
                   { ...props }
-                  cartProducts={ filteredProducts }
+                  filteredProducts={ filteredProducts }
+                  productAmountFilter={ this.productAmountFilter }
                   onChangeHandle={ this.onChangeHandle }
                   nomeCompleto={ nomeCompleto }
                   email={ email }

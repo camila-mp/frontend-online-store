@@ -1,7 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart() {
+    const { addToCart, product } = this.props;
+    addToCart(product);
+  }
+
   render() {
     const { product } = this.props;
     const {
@@ -14,10 +26,11 @@ class ProductDetails extends React.Component {
       seller,
       shipping,
     } = product;
+
     const { permalink } = seller;
     const { city_name: cityName, state_name: stateName } = address;
     const { free_shipping: freeShipping } = shipping;
-    console.log(product);
+
     return (
       <div>
         <h3 data-testid="product-detail-name">
@@ -37,6 +50,15 @@ class ProductDetails extends React.Component {
               { freeShipping ? <li>Frete Grátis!</li> : null }
               <a href={ permalink }>Vendedor</a>
             </ul>
+            <button
+              type="button"
+              name="selectedProduct"
+              data-testid="product-detail-add-to-cart"
+              onClick={ this.addToCart }
+            >
+              Adicione ao carrinho
+            </button>
+            <Link to="/search">Voltar</Link>
           </div>
         </div>
       </div>
@@ -62,6 +84,7 @@ ProductDetails.propTypes = {
       free_shipping: PropTypes.bool,
     }),
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

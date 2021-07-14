@@ -3,6 +3,17 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const { product, addToCart } = this.props;
+    addToCart(product);
+  }
+
   render() {
     const { product, getProductDetail } = this.props;
     const { title, thumbnail_id: id, price } = product;
@@ -12,6 +23,14 @@ class ProductCard extends React.Component {
         <p>{ title }</p>
         <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
         <p>{ price }</p>
+        <button
+          type="button"
+          onClick={ this.handleClick }
+          data-testid="product-add-to-cart"
+          name="selectedProduct"
+        >
+          Adicionar ao carrinho
+        </button>
         <Link
           onClick={ () => getProductDetail(product) }
           data-testid="product-detail-link"
@@ -25,6 +44,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail_id: PropTypes.string.isRequired,

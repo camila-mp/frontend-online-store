@@ -14,6 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.getState = this.getState.bind(this);
+    this.addToCart = this.addToCart.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
 
@@ -21,6 +22,7 @@ class App extends React.Component {
       categoryList: [],
       category: '',
       searchQuery: '',
+      cartProducts: [],
       productDetails: {},
       list: [],
       loading: true,
@@ -50,6 +52,12 @@ class App extends React.Component {
     });
   }
 
+  addToCart(newProduct) {
+    this.setState((prevState) => ({
+      cartProducts: [...prevState.cartProducts, newProduct],
+    }));
+  }
+
   fetchProducts() {
     const { searchQuery, category } = this.state;
 
@@ -72,20 +80,30 @@ class App extends React.Component {
       productDetails,
       searchQuery,
       category,
+      cartProducts,
     } = this.state;
+
     return (
       <div className="App">
         <BrowserRouter>
           <SearchBar getState={ this.getState } />
           <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
           <Switch>
-            <Route exact path="/ShoppingCart" component={ ShoppingCart } />
+            <Route
+              exact
+              path="/shopping-cart"
+              render={ (props) => (<ShoppingCart
+                { ...props }
+                cartProducts={ cartProducts }
+              />) }
+            />
             <Route
               path="/search"
               render={ (props) => (<ProductList
                 { ...props }
                 query={ searchQuery }
                 category={ category }
+                addToCart={ this.addToCart }
                 list={ list }
                 loading={ loading }
                 fetchProducts={ this.fetchProducts }

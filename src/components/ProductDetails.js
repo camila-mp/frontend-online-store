@@ -42,7 +42,7 @@ class ProductDetails extends React.Component {
           />
         </div>
         <div className="product-details-side">
-          <p data-testid="product-details-name" className="product-details-title">
+          <p data-testid="product-detail-name" className="product-details-title">
             { title }
           </p>
           <div className="product-details-price-shipping">
@@ -75,7 +75,7 @@ class ProductDetails extends React.Component {
               className="add-cart-button"
             >
               Adicione ao carrinho
-              <i className="bi bi-cart2" data-testid="shopping-cart-button" />
+              <i className="bi bi-cart2" />
             </button>
             <Link className="product-details-button-back" to="/search">
               Voltar

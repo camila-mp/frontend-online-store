@@ -17,7 +17,12 @@ class ProductCard extends React.Component {
 
   render() {
     const { product, getProductDetail } = this.props;
-    const { title, thumbnail_id: id, price } = product;
+    const {
+      title,
+      thumbnail_id: id,
+      price,
+      shipping: { free_shipping: freeShipping },
+    } = product;
 
     return (
       <div data-testid="product" className="product-card">
@@ -26,6 +31,7 @@ class ProductCard extends React.Component {
           <img className="product-card-image" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
         </div>
         <p className="product-card-price">{ `R$ ${price.toFixed(2)}` }</p>
+        { freeShipping && <p data-testid="free-shipping">Frete Grátis!</p> }
         <button
           type="button"
           onClick={ this.handleClick }
@@ -52,6 +58,9 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail_id: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }),
   }).isRequired,
   getProductDetail: PropTypes.func.isRequired,
 };

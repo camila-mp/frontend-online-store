@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Input extends React.Component {
   render() {
     const { label, type, value, name, testid, onChangeHandle, isRequired } = this.props;
-    if (type === 'checkbox') {
+    if (type === 'radio') {
       return (
         <div>
           <input

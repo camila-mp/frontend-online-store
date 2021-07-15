@@ -72,6 +72,22 @@ class Checkout extends React.Component {
       </div>
     );
   }
+ 
+  renderPaymentMethod() {
+    const { onChangeHandle }
+    return (
+      <div>
+        <Input
+          label="Boleto"
+          type="radio"
+          value="boleto"
+          name="payment"
+          onChangeHandle={ onChangeHandle }
+          isRequired
+        />
+      </div>
+    );
+  }
 
   render() {
     const { filteredProducts } = this.props;

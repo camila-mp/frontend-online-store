@@ -155,7 +155,7 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { filteredProducts } = this.props;
+    const { filteredProducts, btnClick  } = this.props;
     let total = 0;
     return (
       <div>
@@ -175,7 +175,7 @@ class Checkout extends React.Component {
         <form>
           { this.renderBuyerInfo() }
           { this.renderPaymentMethod() }
-          <button type="submit">
+          <button type="button" onClick={ btnClick }>
             Confirmar Pagamento
           </button>
         </form>

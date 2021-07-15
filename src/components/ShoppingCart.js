@@ -54,8 +54,8 @@ class ShoppingCart extends Component {
           product={ item.product }
           amount={ item.amount }
         />)) }
-        <Link to="/checkout">
-          <button data-testid="checkout-products">Finalizar Compra!</button>
+        <Link data-testid="checkout-products" to="/checkout">
+          Finalizar Compra!
         </Link>
       </div>
       

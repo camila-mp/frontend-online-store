@@ -25,8 +25,8 @@ class Input extends React.Component {
         <input
           name={ name }
           type={ type }
-          value={ value }
           data-testeid={ testid }
+          value={ value }
           onChange={ onChangeHandle }
           required={ isRequired }
         />

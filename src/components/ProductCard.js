@@ -44,10 +44,18 @@ class ProductCard extends React.Component {
         data-testid="product"
         className={ this.isInCart() ? 'product-card product-in-cart' : 'product-card' }
       >
-        <p className="product-card-title">{ title }</p>
-        <div className="product-card-image-div">
-          <img className="product-card-image" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
-        </div>
+        <Link
+          onClick={ () => getProductDetail(product) }
+          data-testid="product-detail-link"
+          to="/details"
+          className="product-card-info"
+        >
+          <p className="product-card-title">{ title }</p>
+          <div className="product-card-image-div">
+            <img className="product-card-image" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
+          </div>
+          <p className="product-card-price">{ `R$ ${price.toFixed(2)}` }</p>
+        </Link>
         <p className="product-card-price">{ `R$ ${price.toFixed(2)}` }</p>
         { freeShipping && <p data-testid="free-shipping">Frete Grátis!</p> }
         <button
@@ -55,6 +63,7 @@ class ProductCard extends React.Component {
           onClick={ this.handleClick }
           data-testid="product-add-to-cart"
           name="selectedProduct"
+          className="add-cart-button"
         >
           Adicionar ao carrinho
           {
@@ -62,13 +71,6 @@ class ProductCard extends React.Component {
               && ` ( ${this.amountInCart()} )`
           }
         </button>
-        <Link
-          onClick={ () => getProductDetail(product) }
-          data-testid="product-detail-link"
-          to="/details"
-        >
-          Ver Detalhes
-        </Link>
       </div>
     );
   }

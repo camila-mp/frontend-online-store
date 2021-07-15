@@ -163,7 +163,7 @@ class Checkout extends React.Component {
         <div className="checkout-products-list">
           { filteredProducts.map(({ amount, product }) => {
             total += Number(product.price) * amount;
-            const {thumbnail_id : id} = product;
+            const { thumbnail_id: id } = product;
             return (
               <div className="checkout-product" key={ product.id }>
                 <div className="checkout-image">

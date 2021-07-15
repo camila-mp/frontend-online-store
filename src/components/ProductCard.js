@@ -9,6 +9,7 @@ class ProductCard extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.isInCart = this.isInCart.bind(this);
+    this.amountInCart = this.amountInCart.bind(this);
   }
 
   handleClick() {
@@ -20,6 +21,13 @@ class ProductCard extends React.Component {
     const { cartProducts, product } = this.props;
 
     return cartProducts.some(({ id }) => id === product.id);
+  }
+
+  amountInCart() {
+    const { cartProducts, product } = this.props;
+
+    return cartProducts
+      .filter(({ id }) => id === product.id).length;
   }
 
   render() {
@@ -47,9 +55,12 @@ class ProductCard extends React.Component {
           onClick={ this.handleClick }
           data-testid="product-add-to-cart"
           name="selectedProduct"
-          disabled={ this.isInCart() }
         >
-          { this.isInCart() ? 'Produto Adicionado' : 'Adicionar ao carrinho' }
+          Adicionar ao carrinho
+          {
+            this.isInCart()
+              && ` ( ${this.amountInCart()} )`
+          }
         </button>
         <Link
           onClick={ () => getProductDetail(product) }

@@ -11,6 +11,10 @@
   width: 250px;
 }
 
+.product-in-cart {
+  border: 2px solid rgba(0, 0, 255, 0.555);
+}
+
 .product-card:hover {
   box-shadow: 10px 15px 15px
     rgba(128, 128, 128, 0.3) , -10px 15px 15px rgba(128, 128, 128, 0.3);

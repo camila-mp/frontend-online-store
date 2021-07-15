@@ -22,11 +22,13 @@ class App extends React.Component {
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
 
+    const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
+
     this.state = {
       categoryList: [],
       category: '',
       searchQuery: '',
-      cartProducts: [],
+      cartProducts: storedProducts || [],
       productDetails: {},
       list: [],
       loading: true,
@@ -42,6 +44,10 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCategoryList();
+  }
+
+  componentDidUpdate() {
+    this.storeProducts();
   }
 
   onChangeHandle({ target }) {
@@ -68,6 +74,11 @@ class App extends React.Component {
     this.setState({
       productDetails: product,
     });
+  }
+
+  storeProducts() {
+    const { cartProducts } = this.state;
+    localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
   }
 
   addToCart(newProduct) {
@@ -128,7 +139,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <SearchBar getState={ this.getState } />
+          <SearchBar
+            getState={ this.getState }
+            totalProductsInCart={ cartProducts.length }
+          />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
             <Switch>

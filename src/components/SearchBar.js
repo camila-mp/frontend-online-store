@@ -43,6 +43,7 @@ class SearchBar extends React.Component {
 
   render() {
     const { search } = this.state;
+    const { totalProductsInCart } = this.props;
 
     return (
       <header>
@@ -68,7 +69,9 @@ class SearchBar extends React.Component {
             Procurar
           </button>
         </Link>
-        <BtnCart />
+        <BtnCart
+          totalProductsInCart={ totalProductsInCart }
+        />
       </header>
     );
   }
@@ -76,6 +79,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   getState: PropTypes.func.isRequired,
+  totalProductsInCart: PropTypes.number.isRequired,
 };
 
 export default SearchBar;

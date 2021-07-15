@@ -57,7 +57,9 @@ class SearchBar extends React.Component {
             Procurar
           </button>
         </Link>
-        <BtnCart totalProductsInCart={ totalProductsInCart } />
+        <BtnCart
+          totalProductsInCart={ totalProductsInCart }
+        />
       </header>
     );
   }

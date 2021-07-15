@@ -8,7 +8,10 @@ class BtnCart extends Component {
     const { totalProductsInCart } = this.props;
     return (
       <div>
-        <Link to="/shopping-cart" className="shopping-cart-button">
+        <Link
+          to="/shopping-cart"
+          className="shopping-cart-button"
+        >
           <i className="bi bi-cart2" data-testid="shopping-cart-button" />
         </Link>
         <div data-testid="shopping-cart-size">

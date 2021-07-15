@@ -128,7 +128,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <SearchBar getState={ this.getState } />
+          <SearchBar
+            getState={ this.getState }
+            totalProductsInCart={ cartProducts.length }
+          />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
             <Switch>

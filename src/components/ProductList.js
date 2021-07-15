@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 import './ProductList.css';
-import ItemCart from './ItemCart';
+// import ItemCart from './ItemCart';
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -43,7 +43,6 @@ class ProductList extends React.Component {
             getProductDetail={ getProductDetail }
           />))
         }
-        <ItemCart />
       </div>
     );
   }

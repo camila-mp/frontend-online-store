@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ShoppingCart extends Component {
+class ItemCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,13 +25,13 @@ class ShoppingCart extends Component {
 
   render() {
     const { quantity } = this.state;
-    const { item } = this.props;
-    const { title, price, thumbnail_id: id } = item;
+    const { product } = this.props;
+    const { title, price, thumbnail_id: id } = product;
     return (
-      <div data-testid="product">
-        <h4 data-testid="shopping-cart-product-name">{ title }</h4>
+      <div>
+        <h4>{ title }</h4>
         <p>{ price }</p>
-        <img src={ thumbnail_id: id } alt={ title } />
+        <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt={ title } />
         <button
           data-testid="product-decrease-quantity"
           type="button"
@@ -39,7 +39,7 @@ class ShoppingCart extends Component {
         >
           -
         </button>
-        <p data-testid="shopping-cart-product-quantity">
+        <p>
           { quantity }
         </p>
         <button
@@ -49,11 +49,13 @@ class ShoppingCart extends Component {
         >
           +
         </button>
-        <button type="button"
+        <button
+          type="button"
         >
           X
         </button>
-        <button type="button"
+        <button
+          type="button"
         >
           Finalizar Compra
         </button>

@@ -172,6 +172,7 @@ class App extends React.Component {
                   loading={ loading }
                   fetchProducts={ this.fetchProducts }
                   getProductDetail={ this.getProductDetail }
+                  cartProducts={ cartProducts }
                 />) }
               />
               <Route

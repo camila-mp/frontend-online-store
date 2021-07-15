@@ -10,6 +10,7 @@ class SearchBar extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.state = {
       search: '',
@@ -31,6 +32,15 @@ class SearchBar extends React.Component {
     getState(name, search);
   }
 
+  // Essa sintaxe this.btn.click() assim como o ref={...} no button foram aprendidos aqui:
+  // https://reactgo.com/react-trigger-button-click/
+  handleKeyPress(e) {
+    const ENTER_KEY_CODE = 13;
+    if (e.keyCode === ENTER_KEY_CODE) {
+      this.btn.click();
+    }
+  }
+
   render() {
     const { search } = this.state;
     const { totalProductsInCart } = this.props;
@@ -46,6 +56,7 @@ class SearchBar extends React.Component {
           data-testid="query-input"
           type="text"
           onChange={ this.handleChange }
+          onKeyUp={ this.handleKeyPress }
         />
         <Link to="/search">
           <button
@@ -53,6 +64,7 @@ class SearchBar extends React.Component {
             type="button"
             onClick={ this.handleClick }
             name="searchQuery"
+            ref={ (node) => { this.btn = node; } }
           >
             Procurar
           </button>

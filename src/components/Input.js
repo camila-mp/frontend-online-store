@@ -11,9 +11,7 @@ class Input extends React.Component {
             name={ name }
             type={ type }
             value={ value }
-            data-testeid={ testid }
             onChange={ onChangeHandle }
-            checked={ isRequired }
           />
           <label htmlFor={ name }>{ label }</label>
         </div>

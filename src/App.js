@@ -36,6 +36,7 @@ class App extends React.Component {
       telefone: '',
       cep: '',
       endereco: '',
+      payment: 'boleto',
       filteredProducts: [],
     };
   }
@@ -122,6 +123,7 @@ class App extends React.Component {
       telefone,
       cep,
       endereco,
+      payment,
       filteredProducts,
     } = this.state;
 
@@ -177,6 +179,7 @@ class App extends React.Component {
                   telefone={ telefone }
                   cep={ cep }
                   endereco={ endereco }
+                  payment={ payment }
                 />) }
               />
               <Route exact path="/" component={ StartMessage } />

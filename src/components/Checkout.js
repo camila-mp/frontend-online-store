@@ -74,7 +74,7 @@ class Checkout extends React.Component {
   }
  
   renderPaymentMethod() {
-    const { onChangeHandle }
+    const { onChangeHandle } = this.props;
     return (
       <div>
         <Input
@@ -84,6 +84,20 @@ class Checkout extends React.Component {
           name="payment"
           onChangeHandle={ onChangeHandle }
           isRequired
+        />
+        <Input
+          label="Cartão de Crédito"
+          type="radio"
+          value="cc"
+          name="payment"
+          onChangeHandle={ onChangeHandle }
+        />
+        <Input
+          label="Pix"
+          type="radio"
+          value="pix"
+          name="payment"
+          onChangeHandle={ onChangeHandle }
         />
       </div>
     );
@@ -109,9 +123,7 @@ class Checkout extends React.Component {
         </div>
         <form>
           { this.renderBuyerInfo() }
-          <div>
-            metodo pagamento
-          </div>
+          { this.renderPaymentMethod() }
           <button type="submit">
             Pagamento
           </button>

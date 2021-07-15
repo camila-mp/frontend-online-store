@@ -36,6 +36,8 @@ class App extends React.Component {
       telefone: '',
       cep: '',
       endereco: '',
+      cidade: '',
+      estado: '',
       payment: 'boleto',
       filteredProducts: [],
     };
@@ -123,6 +125,8 @@ class App extends React.Component {
       telefone,
       cep,
       endereco,
+      cidade,
+      estado,
       payment,
       filteredProducts,
     } = this.state;
@@ -179,6 +183,8 @@ class App extends React.Component {
                   telefone={ telefone }
                   cep={ cep }
                   endereco={ endereco }
+                  cidade={ cidade }
+                  estado={ estado }
                   payment={ payment }
                 />) }
               />

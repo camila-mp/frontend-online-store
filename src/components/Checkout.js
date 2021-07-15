@@ -2,6 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
 
+const siglas = [
+  'AC',
+  'AL',
+  'AP',
+  'AM',
+  'BA',
+  'CE',
+  'DF',
+  'ES',
+  'GO',
+  'MA',
+  'MS',
+  'MT',
+  'MG',
+  'PA',
+  'PB',
+  'PR',
+  'PE',
+  'PI',
+  'RJ',
+  'RN',
+  'RS',
+  'RO',
+  'RR',
+  'SC',
+  'SP',
+  'SE',
+  'TO',
+];
+
 class Checkout extends React.Component {
   renderBuyerInfo() {
     const {
@@ -12,6 +42,7 @@ class Checkout extends React.Component {
       telefone,
       cep,
       endereco,
+      cidade,
     } = this.props;
     return (
       <div>
@@ -69,10 +100,31 @@ class Checkout extends React.Component {
           onChangeHandle={ onChangeHandle }
           isRequired
         />
+        <Input
+          label="Cidade:"
+          type="text"
+          value={ cidade }
+          name="cidade"
+          onChangeHandle={ onChangeHandle }
+          isRequired
+        />
+        <label htmlFor="estado">
+          Estado:
+          <select name="estado" onChange={ onChangeHandle }>
+            { siglas.map((estado) => (
+              <option
+                key={ estado }
+                value={ estado }
+              >
+                { estado }
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
     );
   }
- 
+
   renderPaymentMethod() {
     const { onChangeHandle } = this.props;
     return (
@@ -83,7 +135,6 @@ class Checkout extends React.Component {
           value="boleto"
           name="payment"
           onChangeHandle={ onChangeHandle }
-          isRequired
         />
         <Input
           label="Cartão de Crédito"
@@ -125,7 +176,7 @@ class Checkout extends React.Component {
           { this.renderBuyerInfo() }
           { this.renderPaymentMethod() }
           <button type="submit">
-            Pagamento
+            Confirmar Pagamento
           </button>
         </form>
       </div>
@@ -141,6 +192,7 @@ Checkout.propTypes = {
   telefone: PropTypes.string.isRequired,
   cep: PropTypes.string.isRequired,
   endereco: PropTypes.string.isRequired,
+  cidade: PropTypes.string.isRequired,
   filteredProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

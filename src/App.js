@@ -9,6 +9,7 @@ import * as api from './services/api';
 import CategoryFilter from './components/CategoryFilter';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
+import Checkout from './components/Checkout';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
+    this.onChangeHandle = this.onChangeHandle.bind(this);
+    this.productAmountFilter = this.productAmountFilter.bind(this);
 
     this.state = {
       categoryList: [],
@@ -27,6 +30,13 @@ class App extends React.Component {
       productDetails: {},
       list: [],
       loading: true,
+      nomeCompleto: '',
+      email: '',
+      cpf: '',
+      telefone: '',
+      cep: '',
+      endereco: '',
+      filteredProducts: [],
     };
   }
 
@@ -34,16 +44,23 @@ class App extends React.Component {
     this.getCategoryList();
   }
 
-  async getCategoryList() {
-    const list = await api.getCategories();
+  onChangeHandle({ target }) {
+    const { name, value } = target;
     this.setState({
-      categoryList: list,
+      [name]: value,
     });
   }
 
   getState(name, value) {
     this.setState({
       [name]: value,
+    });
+  }
+
+  async getCategoryList() {
+    const list = await api.getCategories();
+    this.setState({
+      categoryList: list,
     });
   }
 
@@ -73,6 +90,23 @@ class App extends React.Component {
     });
   }
 
+  productAmountFilter() {
+    const { cartProducts } = this.state;
+    let filteredProducts = [];
+    cartProducts.forEach((product) => {
+      if (!filteredProducts.some((element) => element.product.id === product.id)) {
+        const productArray = cartProducts.filter((item) => product.id === item.id);
+        filteredProducts = [
+          ...filteredProducts,
+          { amount: productArray.length, product },
+        ];
+      }
+    });
+    this.setState({
+      filteredProducts,
+    });
+  }
+
   render() {
     const {
       categoryList,
@@ -82,6 +116,13 @@ class App extends React.Component {
       searchQuery,
       category,
       cartProducts,
+      nomeCompleto,
+      email,
+      cpf,
+      telefone,
+      cep,
+      endereco,
+      filteredProducts,
     } = this.state;
 
     return (
@@ -97,6 +138,8 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
+                  productAmountFilter={ this.productAmountFilter }
+                  filteredProducts={ filteredProducts }
                 />) }
               />
               <Route
@@ -119,6 +162,21 @@ class App extends React.Component {
                   { ...props }
                   product={ productDetails }
                   addToCart={ this.addToCart }
+                />) }
+              />
+              <Route
+                exact
+                path="/checkout"
+                render={ (props) => (<Checkout
+                  { ...props }
+                  filteredProducts={ filteredProducts }
+                  onChangeHandle={ this.onChangeHandle }
+                  nomeCompleto={ nomeCompleto }
+                  email={ email }
+                  cpf={ cpf }
+                  telefone={ telefone }
+                  cep={ cep }
+                  endereco={ endereco }
                 />) }
               />
               <Route exact path="/" component={ StartMessage } />

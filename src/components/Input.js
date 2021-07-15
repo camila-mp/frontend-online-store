@@ -6,7 +6,7 @@ class Input extends React.Component {
     const { label, type, value, name, testid, onChangeHandle, isRequired } = this.props;
     if (type === 'radio') {
       return (
-        <div>
+        <div className="checkout-radio">
           <input
             name={ name }
             type={ type }

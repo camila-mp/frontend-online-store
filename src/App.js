@@ -125,7 +125,6 @@ class App extends React.Component {
 
   paymentButtonClick() {
     this.setState(INITIAL_STATE);
-    alert('parabens pela compra');
   }
 
   render() {

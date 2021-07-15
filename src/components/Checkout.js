@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
+import './Checkout.css';
 
 const siglas = [
   'AC',
@@ -128,7 +129,7 @@ class Checkout extends React.Component {
   renderPaymentMethod() {
     const { onChangeHandle } = this.props;
     return (
-      <div>
+      <div className="checkout-payment">
         <Input
           label="Boleto"
           type="radio"
@@ -155,11 +156,11 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { filteredProducts, btnClick  } = this.props;
+    const { filteredProducts, btnClick } = this.props;
     let total = 0;
     return (
-      <div>
-        <div>
+      <div className="checkout-container">
+        <div className="checkout-products">
           { filteredProducts.map(({ amount, product }) => {
             total += Number(product.price) * amount;
             return (
@@ -172,7 +173,7 @@ class Checkout extends React.Component {
           })}
           <p>{total}</p>
         </div>
-        <form>
+        <form className="checkout-form">
           { this.renderBuyerInfo() }
           { this.renderPaymentMethod() }
           <button type="button" onClick={ btnClick }>
@@ -193,6 +194,7 @@ Checkout.propTypes = {
   cep: PropTypes.string.isRequired,
   endereco: PropTypes.string.isRequired,
   cidade: PropTypes.string.isRequired,
+  btnClick: PropTypes.func.isRequired,
   filteredProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

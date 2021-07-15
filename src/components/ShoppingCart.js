@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CartProductCard from './CartProductCard';
 import { Link } from 'react-router-dom';
+import CartProductCard from './CartProductCard';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -58,13 +58,14 @@ class ShoppingCart extends Component {
           Finalizar Compra!
         </Link>
       </div>
-      
     );
   }
 }
 
 ShoppingCart.propTypes = {
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filteredProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productAmountFilter: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

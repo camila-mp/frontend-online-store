@@ -107,7 +107,6 @@ class App extends React.Component {
     });
   }
 
-
   render() {
     const {
       categoryList,
@@ -139,8 +138,8 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
-                  productAmountFilter= { this.productAmountFilter }
-                  filteredProducts= { filteredProducts }
+                  productAmountFilter={ this.productAmountFilter }
+                  filteredProducts={ filteredProducts }
                 />) }
               />
               <Route

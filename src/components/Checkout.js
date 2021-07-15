@@ -113,6 +113,7 @@ Checkout.propTypes = {
   telefone: PropTypes.string.isRequired,
   cep: PropTypes.string.isRequired,
   endereco: PropTypes.string.isRequired,
+  filteredProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Checkout;

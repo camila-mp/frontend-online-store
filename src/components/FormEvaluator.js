@@ -19,8 +19,11 @@ class FormEvaluator extends React.Component {
     this.loadLocalStorage();
   }
 
-  onChangeClick(event) {
-    this.setState({ email, textArea: event.target.value });
+  onChangeClick({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   submitBtn() {
@@ -44,6 +47,7 @@ class FormEvaluator extends React.Component {
         <label htmlFor="email">
           <input
             type="email"
+            name="email"
             id="email"
             value={ email }
             placeholder="Email"
@@ -90,6 +94,7 @@ class FormEvaluator extends React.Component {
         <label htmlFor="textArea">
           <textarea
             data-testid="product-detail-evaluation"
+            name="textArea"
             id="textArea"
             value={ textArea }
             placeholder="Mensagem (opcional)"

@@ -56,7 +56,6 @@ class ProductCard extends React.Component {
           </div>
           <p className="product-card-price">{ `R$ ${price.toFixed(2)}` }</p>
         </Link>
-        <p className="product-card-price">{ `R$ ${price.toFixed(2)}` }</p>
         { freeShipping && <p data-testid="free-shipping">Frete Grátis!</p> }
         <button
           type="button"

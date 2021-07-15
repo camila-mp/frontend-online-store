@@ -160,21 +160,29 @@ class Checkout extends React.Component {
     let total = 0;
     return (
       <div className="checkout-container">
-        <div className="checkout-products">
+        <div className="checkout-products-list">
           { filteredProducts.map(({ amount, product }) => {
             total += Number(product.price) * amount;
+            const {thumbnail_id : id} = product;
             return (
-              <div key={ product.id }>
-                <p>{ product.title }</p>
-                <p>{`Quantidade: ${amount}`}</p>
-                <p>{`Preco: ${product.price}`}</p>
+              <div className="checkout-product" key={ product.id }>
+                <div className="checkout-image">
+                  <img className="product-card-image" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
+                </div>
+                <div className="checkout-product-info">
+                  <p>{ product.title }</p>
+                  <p>{`Quantidade: ${amount}`}</p>
+                  <p>{`Preço: R$${product.price}`}</p>
+                </div>
               </div>
             );
           })}
           <h3>{`Total: R$${total}`}</h3>
         </div>
         <form className="checkout-form">
+          <p>Informações para entrega:</p>
           { this.renderBuyerInfo() }
+          <p>Método de Pagamento:</p>
           { this.renderPaymentMethod() }
           <button type="button" onClick={ btnClick }>
             Confirmar Pagamento

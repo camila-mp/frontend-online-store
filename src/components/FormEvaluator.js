@@ -6,11 +6,12 @@ class FormEvaluator extends React.Component {
     this.state = {
       email: '',
       textArea: '',
+      rating: 0,
     };
 
     this.submitBtn = this.submitBtn.bind(this);
     this.btnClick = this.btnClick.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeClick = this.onChangeClick.bind(this);
     this.loadLocalStorage = this.loadLocalStorage.bind(this);
   }
 
@@ -18,8 +19,8 @@ class FormEvaluator extends React.Component {
     this.loadLocalStorage();
   }
 
-  onChangeEmail(e) {
-    this.setState({ email: e.target.value });
+  onChangeClick(event) {
+    this.setState({ email, textArea: event.target.value });
   }
 
   submitBtn() {
@@ -32,8 +33,7 @@ class FormEvaluator extends React.Component {
 
   loadLocalStorage() {
     const localState = JSON.parse(localStorage.getItem('user'));
-    if (localState === null) return null;
-    this.setState(localState);
+    if (localState) this.setState(localStorage);
   }
 
   render() {
@@ -47,7 +47,7 @@ class FormEvaluator extends React.Component {
             id="email"
             value={ email }
             placeholder="Email"
-            onChange={ this.onChangeEmail }
+            onChange={ this.onChangeClick }
           />
         </label>
         <div>
@@ -93,13 +93,13 @@ class FormEvaluator extends React.Component {
             id="textArea"
             value={ textArea }
             placeholder="Mensagem (opcional)"
-            onChange={ (event) => this.setState({ textArea: event.target.value }) }
+            onChange={ this.onChangeClick }
           />
         </label>
         <button
           type="submit"
           id="btn-form"
-          onClick={ () => this.submitBtn }
+          onClick={ this.submitBtn }
         >
           Avaliar
         </button>

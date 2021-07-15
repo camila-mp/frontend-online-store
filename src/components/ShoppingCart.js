@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CartProductCard from './CartProductCard';
+// import ItemCart from './ItemCart';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -69,6 +70,7 @@ class ShoppingCart extends Component {
           product={ item.product }
           amount={ item.amount }
         />)) }
+        {/* <ItemCart /> */}
       </div>
     );
   }

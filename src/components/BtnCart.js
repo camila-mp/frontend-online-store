@@ -10,7 +10,7 @@ class BtnCart extends Component {
       <div>
         <Link
           to="/shopping-cart"
-          className="shopping-cart-button"
+          className="cart-button"
         >
           <i className="bi bi-cart2" data-testid="shopping-cart-button" />
         </Link>

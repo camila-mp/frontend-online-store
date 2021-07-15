@@ -76,14 +76,10 @@ class App extends React.Component {
     });
   }
 
-  // --------------------------
-
   storeProducts() {
     const { cartProducts } = this.state;
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
   }
-
-  // --------------------------
 
   addToCart(newProduct) {
     this.setState((prevState) => ({
@@ -146,7 +142,6 @@ class App extends React.Component {
           <SearchBar
             getState={ this.getState }
             totalProductsInCart={ cartProducts.length }
-            filteredProducts={ filteredProducts }
           />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />

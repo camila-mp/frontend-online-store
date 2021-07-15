@@ -10,19 +10,37 @@
   padding: 5px;
 }
 
-.checkout-form {
+.checkout-info {
   border: 1px solid black;
+  margin-bottom: 10px;
   padding: 5px;
 }
 
-.checkout-form label {
+.checkout-info label {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
+  margin-bottom: 7px;
+}
+
+.checkout-info input {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 3px;
+  width: 85%;
+}
+
+.checkout-info select {
+  background-color: aliceblue;
+  border-radius: 10px;
+  width: 35%;
 }
 
 .checkout-payment {
+  border: 1px solid black;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 10px;
 }
 
 .checkout-radio {
@@ -31,4 +49,14 @@
 
 .checkout-radio input {
   margin-right: 5px;
+}
+
+.checkout-form button {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px black;
+  color: #333;
+  cursor: pointer;
+  margin: auto;
+  padding: 8px 20px;
 }

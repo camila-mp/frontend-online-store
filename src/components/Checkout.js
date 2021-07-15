@@ -46,7 +46,7 @@ class Checkout extends React.Component {
       cidade,
     } = this.props;
     return (
-      <div>
+      <div className="checkout-info">
         <Input
           label="Nome Completo:"
           type="text"
@@ -171,7 +171,7 @@ class Checkout extends React.Component {
               </div>
             );
           })}
-          <p>{total}</p>
+          <h3>{`Total: R$${total}`}</h3>
         </div>
         <form className="checkout-form">
           { this.renderBuyerInfo() }

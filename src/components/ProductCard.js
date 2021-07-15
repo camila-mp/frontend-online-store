@@ -8,11 +8,18 @@ class ProductCard extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.isInCart = this.isInCart.bind(this);
   }
 
   handleClick() {
     const { product, addToCart } = this.props;
     addToCart(product);
+  }
+
+  isInCart() {
+    const { cartProducts, product } = this.props;
+
+    return cartProducts.some(({ id }) => id === product.id);
   }
 
   render() {
@@ -25,7 +32,10 @@ class ProductCard extends React.Component {
     } = product;
 
     return (
-      <div data-testid="product" className="product-card">
+      <div
+        data-testid="product"
+        className={ this.isInCart() ? 'product-card product-in-cart' : 'product-card' }
+      >
         <p className="product-card-title">{ title }</p>
         <div className="product-card-image-div">
           <img className="product-card-image" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
@@ -37,8 +47,9 @@ class ProductCard extends React.Component {
           onClick={ this.handleClick }
           data-testid="product-add-to-cart"
           name="selectedProduct"
+          disabled={ this.isInCart() }
         >
-          Adicionar ao carrinho
+          { this.isInCart() ? 'Produto Adicionado' : 'Adicionar ao carrinho' }
         </button>
         <Link
           onClick={ () => getProductDetail(product) }
@@ -58,11 +69,13 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail_id: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool.isRequired,
     }),
   }).isRequired,
   getProductDetail: PropTypes.func.isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductCard;

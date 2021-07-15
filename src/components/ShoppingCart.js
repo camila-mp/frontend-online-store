@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import CartProductCard from './CartProductCard';
 
 class ShoppingCart extends Component {
@@ -7,39 +8,22 @@ class ShoppingCart extends Component {
     super(props);
 
     this.checkCart = this.checkCart.bind(this);
-    this.productAmountFilter = this.productAmountFilter.bind(this);
+
     this.state = {
       empty: true,
-      filteredProducts: [],
     };
   }
 
   componentDidMount() {
+    const { productAmountFilter } = this.props;
     this.checkCart();
-    this.productAmountFilter();
-  }
-
-  productAmountFilter() {
-    const { cartProducts } = this.props;
-    let filteredProducts = [];
-    cartProducts.forEach((product) => {
-      if (!filteredProducts.some((element) => element.product.id === product.id)) {
-        const productArray = cartProducts.filter((item) => product.id === item.id);
-        filteredProducts = [
-          ...filteredProducts,
-          { amount: productArray.length, product },
-        ];
-      }
-    });
-    this.setState({
-      filteredProducts,
-    });
+    productAmountFilter();
   }
 
   componentDidUpdade(prevProps) {
-    const { cartProducts } = this.props;
+    const { cartProducts, productAmountFilter } = this.props;
     if (prevProps.cartProducts.length !== cartProducts.length) {
-      this.productAmountfilter();
+      productAmountFilter();
     }
   }
 
@@ -53,10 +37,11 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    const { empty, filteredProducts } = this.state;
+    const { empty } = this.state;
+    const { filteredProducts } = this.props;
     if (empty) {
       return (
-        <div>
+        <div className="main-container">
           <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
         </div>
       );
@@ -69,6 +54,9 @@ class ShoppingCart extends Component {
           product={ item.product }
           amount={ item.amount }
         />)) }
+        <Link data-testid="checkout-products" to="/checkout">
+          Finalizar Compra!
+        </Link>
       </div>
     );
   }
@@ -76,6 +64,8 @@ class ShoppingCart extends Component {
 
 ShoppingCart.propTypes = {
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filteredProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productAmountFilter: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

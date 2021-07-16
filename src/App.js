@@ -31,6 +31,7 @@ class App extends React.Component {
     this.getState = this.getState.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.fastCheckout = this.fastCheckout.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
@@ -96,7 +97,7 @@ class App extends React.Component {
 
   fastCheckout() {
     const { fastCheckout } = this.state;
-    return !fastCheckout;
+    this.setState({ fastCheckout: !fastCheckout });
   }
 
   storeProducts() {

@@ -56,6 +56,7 @@ class App extends React.Component {
       estado: '',
       payment: 'boleto',
       filteredProducts: [],
+      fastCheckout: false,
     };
   }
 
@@ -91,6 +92,11 @@ class App extends React.Component {
     this.setState({
       productDetails: product,
     });
+  }
+
+  fastCheckout() {
+    const { fastCheckout } = this.state;
+    return !fastCheckout;
   }
 
   storeProducts() {

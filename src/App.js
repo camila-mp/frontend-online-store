@@ -24,6 +24,7 @@ class App extends React.Component {
     this.getProductDetail = this.getProductDetail.bind(this);
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
+    this.rmvFromCart = this.rmvFromCart.bind(this);
     this.paymentButtonClick = this.paymentButtonClick.bind(this);
 
     const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
@@ -52,10 +53,15 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCategoryList();
+    this.productAmountFilter();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.storeProducts();
+    const { cartProducts } = this.state;
+    if (cartProducts.length !== prevState.cartProducts.length) {
+      this.productAmountFilter();
+    }
   }
 
   onChangeHandle({ target }) {
@@ -98,6 +104,19 @@ class App extends React.Component {
     this.setState((prevState) => ({
       cartProducts: [...prevState.cartProducts, newProduct],
     }));
+  }
+
+  rmvFromCart(product) {
+    const { cartProducts } = this.state;
+    const newArray = [...cartProducts];
+    const initialSearchIndex = -1;
+    const productIndex = newArray.indexOf(product, initialSearchIndex);
+
+    newArray.splice(productIndex, 1);
+
+    this.setState({
+      cartProducts: [...newArray],
+    });
   }
 
   fetchProducts() {
@@ -180,8 +199,9 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
-                  productAmountFilter={ this.productAmountFilter }
+                  addToCart={ this.addToCart }
                   filteredProducts={ filteredProducts }
+                  rmvFromCart={ this.rmvFromCart }
                 />) }
               />
               <Route

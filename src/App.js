@@ -11,18 +11,7 @@ import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
 import FastCheckout from './components/FastCheckout';
-
-const INITIAL_STATE = {
-  nomeCompleto: '',
-  email: '',
-  cpf: '',
-  telefone: '',
-  cep: '',
-  endereco: '',
-  cidade: '',
-  estado: '',
-  payment: 'boleto',
-};
+import INITIAL_STATE from './services/data';
 
 class App extends React.Component {
   constructor(props) {

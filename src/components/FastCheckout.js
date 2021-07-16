@@ -9,9 +9,30 @@ class FastCheckout extends Component {
   constructor(props) {
     super(props);
 
+    this.setTotalPrice = this.setTotalPrice.bind(this);
+
     this.state = {
       totalPrice: 0,
     };
+  }
+
+  componentDidMount() {
+    this.setTotalPrice();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { cartProducts } = this.props;
+    if (cartProducts.length !== prevProps.cartProducts.length) {
+      this.setTotalPrice();
+    }
+  }
+
+  setTotalPrice() {
+    const { filteredProducts } = this.props;
+    const totalPrice = filteredProducts
+      .reduce((acc, { amount, product: { price } }) => (amount * price) + acc, 0);
+
+    this.setState({ totalPrice });
   }
 
   render() {
@@ -67,6 +88,7 @@ FastCheckout.propTypes = {
       price: PropTypes.number.isRequired,
     }).isRequired,
   })).isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FastCheckout;

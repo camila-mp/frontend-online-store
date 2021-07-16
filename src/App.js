@@ -169,6 +169,7 @@ class App extends React.Component {
             showFastCheckout={ fastCheckout }
             fastCheckout={ this.fastCheckout }
             filteredProducts={ filteredProducts }
+            cartProducts={ cartProducts }
           />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />

@@ -6,14 +6,12 @@ class BtnCart extends Component {
   render() {
     const { totalProductsInCart, fastCheckout } = this.props;
     return (
-      <div className="btn-cart">
-        <button type="button" onClick={ fastCheckout } className="cart-button">
-          <i className="bi bi-cart2" data-testid="shopping-cart-button cart-button" />
-          <div data-testid="shopping-cart-size">
-            { totalProductsInCart }
-          </div>
-        </button>
-      </div>
+      <button type="button" onClick={ fastCheckout } className="cart-button">
+        <i className="bi bi-cart2" data-testid="shopping-cart-button cart-button" />
+        <div data-testid="shopping-cart-size" className="btn-cart-amount">
+          { totalProductsInCart }
+        </div>
+      </button>
     );
   }
 }

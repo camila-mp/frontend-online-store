@@ -54,6 +54,7 @@ class FastCheckout extends Component {
           </Link>
           <AiIcons.AiOutlineClose onClick={ fastCheckout } />
         </div>
+        <p className="fast-checkout-heading">Carrinho de Compras</p>
         <div className="fast-checkout-products">
           {
             filteredProducts
@@ -66,11 +67,11 @@ class FastCheckout extends Component {
               ))
           }
         </div>
-        <p>
-          Total - R$
+        <p className="fast-checkout-total">
+          Preço Total: R$
           {` ${totalPrice.toFixed(2)}`}
         </p>
-        <Link to="/checkout">
+        <Link className="fast-checkout-button" to="/checkout">
           Finalizar Compra!
         </Link>
       </div>

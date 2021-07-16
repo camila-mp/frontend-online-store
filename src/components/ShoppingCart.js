@@ -15,16 +15,7 @@ class ShoppingCart extends Component {
   }
 
   componentDidMount() {
-    const { productAmountFilter } = this.props;
     this.checkCart();
-    productAmountFilter();
-  }
-
-  componentDidUpdade(prevProps) {
-    const { cartProducts, productAmountFilter } = this.props;
-    if (prevProps.cartProducts.length !== cartProducts.length) {
-      productAmountFilter();
-    }
   }
 
   checkCart() {
@@ -38,7 +29,7 @@ class ShoppingCart extends Component {
 
   render() {
     const { empty } = this.state;
-    const { filteredProducts } = this.props;
+    const { filteredProducts, addToCart, rmvFromCart } = this.props;
     if (empty) {
       return (
         <div className="main-container">
@@ -53,6 +44,8 @@ class ShoppingCart extends Component {
           key={ item.product.id }
           product={ item.product }
           amount={ item.amount }
+          addToCart={ addToCart }
+          rmvFromCart={ rmvFromCart }
         />)) }
         <Link data-testid="checkout-products" to="/checkout">
           Finalizar Compra!
@@ -65,7 +58,8 @@ class ShoppingCart extends Component {
 ShoppingCart.propTypes = {
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   filteredProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  productAmountFilter: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  rmvFromCart: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

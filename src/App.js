@@ -10,18 +10,7 @@ import CategoryFilter from './components/CategoryFilter';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
-
-const INITIAL_STATE = {
-  nomeCompleto: '',
-  email: '',
-  cpf: '',
-  telefone: '',
-  cep: '',
-  endereco: '',
-  cidade: '',
-  estado: '',
-  payment: 'boleto',
-};
+import INITIAL_STATE from './services/data';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +22,7 @@ class App extends React.Component {
     this.getProductDetail = this.getProductDetail.bind(this);
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
+    this.rmvFromCart = this.rmvFromCart.bind(this);
     this.paymentButtonClick = this.paymentButtonClick.bind(this);
 
     const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
@@ -60,10 +50,15 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCategoryList();
+    this.productAmountFilter();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.storeProducts();
+    const { cartProducts } = this.state;
+    if (cartProducts.length !== prevState.cartProducts.length) {
+      this.productAmountFilter();
+    }
   }
 
   onChangeHandle({ target }) {
@@ -101,6 +96,19 @@ class App extends React.Component {
     this.setState((prevState) => ({
       cartProducts: [...prevState.cartProducts, newProduct],
     }));
+  }
+
+  rmvFromCart(product) {
+    const { cartProducts } = this.state;
+    const newArray = [...cartProducts];
+    const initialSearchIndex = -1;
+    const productIndex = newArray.indexOf(product, initialSearchIndex);
+
+    newArray.splice(productIndex, 1);
+
+    this.setState({
+      cartProducts: [...newArray],
+    });
   }
 
   fetchProducts() {
@@ -175,8 +183,9 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
-                  productAmountFilter={ this.productAmountFilter }
+                  addToCart={ this.addToCart }
                   filteredProducts={ filteredProducts }
+                  rmvFromCart={ this.rmvFromCart }
                 />) }
               />
               <Route

@@ -176,7 +176,10 @@ class App extends React.Component {
             totalProductsInCart={ cartProducts.length }
             fastCheckout={ this.fastCheckout }
           />
-          <FastCheckout showFastCheckout={ fastCheckout } />
+          <FastCheckout
+            showFastCheckout={ fastCheckout }
+            fastCheckout={ this.fastCheckout }
+          />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
             <Switch>

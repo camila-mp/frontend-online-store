@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import * as AiIcons from 'react-icons/ai';
 import './FastCheckout.css';
 import { Link } from 'react-router-dom';
+import FastCheckoutProductCard from './FastCheckoutProductCard';
 
 class FastCheckout extends Component {
   render() {
-    const { showFastCheckout, fastCheckout } = this.props;
+    const { showFastCheckout, fastCheckout, filteredProducts } = this.props;
 
     return (
       <div
@@ -23,6 +24,18 @@ class FastCheckout extends Component {
           </Link>
           <AiIcons.AiOutlineClose onClick={ fastCheckout } />
         </div>
+        <div className="fast-checkout-products">
+          {
+            filteredProducts
+              .map(({ amount, product }) => (
+                <FastCheckoutProductCard
+                  key={ `FC-${product.id}` }
+                  amount={ amount }
+                  product={ product }
+                />
+              ))
+          }
+        </div>
         <Link to="/checkout">
           Finalizar Compra!
         </Link>
@@ -34,6 +47,13 @@ class FastCheckout extends Component {
 FastCheckout.propTypes = {
   showFastCheckout: PropTypes.bool.isRequired,
   fastCheckout: PropTypes.func.isRequired,
+  filteredProducts: PropTypes.arrayOf(PropTypes.shape({
+    amount: PropTypes.number.isRequired,
+    product: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }).isRequired,
+  })).isRequired,
 };
 
 export default FastCheckout;

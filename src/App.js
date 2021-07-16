@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
 import FastCheckout from './components/FastCheckout';
-import { INITIAL_STATE, state } from './services/data';
+import INITIAL_STATE from './services/data';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,23 +24,38 @@ class App extends React.Component {
     this.getProductDetail = this.getProductDetail.bind(this);
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
-    this.rmvFromCart = this.rmvFromCart.bind(this);
     this.paymentButtonClick = this.paymentButtonClick.bind(this);
 
-    this.state = state;
+    const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
+
+    this.state = {
+      categoryList: [],
+      category: '',
+      searchQuery: '',
+      cartProducts: storedProducts || [],
+      productDetails: {},
+      list: [],
+      loading: true,
+      nomeCompleto: '',
+      email: '',
+      cpf: '',
+      telefone: '',
+      cep: '',
+      endereco: '',
+      cidade: '',
+      estado: '',
+      payment: 'boleto',
+      filteredProducts: [],
+      fastCheckout: false,
+    };
   }
 
   componentDidMount() {
     this.getCategoryList();
-    this.productAmountFilter();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.storeProducts();
-    const { cartProducts } = this.state;
-    if (cartProducts.length !== prevState.cartProducts.length) {
-      this.productAmountFilter();
-    }
   }
 
   onChangeHandle({ target }) {
@@ -85,19 +100,9 @@ class App extends React.Component {
     }));
   }
 
-  rmvFromCart(product) {
-    const { cartProducts } = this.state;
-    const newArray = [...cartProducts];
-    const initialSearchIndex = -1;
-    const productIndex = newArray.indexOf(product, initialSearchIndex);
-    newArray.splice(productIndex, 1);
-    this.setState({
-      cartProducts: [...newArray],
-    });
-  }
-
   fetchProducts() {
     const { searchQuery, category } = this.state;
+
     this.setState({
       loading: true,
     }, async () => {
@@ -151,6 +156,7 @@ class App extends React.Component {
       filteredProducts,
       fastCheckout,
     } = this.state;
+
     return (
       <div className="App">
         <BrowserRouter>
@@ -174,9 +180,8 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
-                  addToCart={ this.addToCart }
+                  productAmountFilter={ this.productAmountFilter }
                   filteredProducts={ filteredProducts }
-                  rmvFromCart={ this.rmvFromCart }
                 />) }
               />
               <Route

@@ -42,7 +42,7 @@ class FastCheckout extends Component {
     return (
       <div
         className={ showFastCheckout ? 'fast-checkout active' : 'fast-checkout' }
-        onMouseLeave={ fastCheckout }
+        // onMouseLeave={ fastCheckout }
       >
         <div className="fast-checkout-top-buttons">
           <Link

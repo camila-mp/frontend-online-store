@@ -23,6 +23,9 @@ class FastCheckout extends Component {
           </Link>
           <AiIcons.AiOutlineClose onClick={ fastCheckout } />
         </div>
+        <Link to="/checkout">
+          Finalizar Compra!
+        </Link>
       </div>
     );
   }

@@ -165,6 +165,7 @@ class App extends React.Component {
       estado,
       payment,
       filteredProducts,
+      fastCheckout,
     } = this.state;
 
     return (
@@ -175,7 +176,7 @@ class App extends React.Component {
             totalProductsInCart={ cartProducts.length }
             fastCheckout={ this.fastCheckout }
           />
-          <FastCheckout />
+          <FastCheckout showFastCheckout={ fastCheckout } />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
             <Switch>

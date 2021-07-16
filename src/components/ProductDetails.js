@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import FormEvaluator from './FormEvaluator';
 import './ProductDetails.css';
 
 class ProductDetails extends React.Component {
@@ -81,6 +82,7 @@ class ProductDetails extends React.Component {
               Voltar
               <i className="bi bi-box-arrow-in-left" />
             </Link>
+            <FormEvaluator />
           </div>
         </div>
       </div>

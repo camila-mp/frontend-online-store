@@ -11,6 +11,18 @@ import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
 
+const INITIAL_STATE = {
+  nomeCompleto: '',
+  email: '',
+  cpf: '',
+  telefone: '',
+  cep: '',
+  endereco: '',
+  cidade: '',
+  estado: '',
+  payment: 'boleto',
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +34,7 @@ class App extends React.Component {
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
     this.rmvFromCart = this.rmvFromCart.bind(this);
+    this.paymentButtonClick = this.paymentButtonClick.bind(this);
 
     const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
 
@@ -39,6 +52,9 @@ class App extends React.Component {
       telefone: '',
       cep: '',
       endereco: '',
+      cidade: '',
+      estado: '',
+      payment: 'boleto',
       filteredProducts: [],
     };
   }
@@ -137,6 +153,10 @@ class App extends React.Component {
     });
   }
 
+  paymentButtonClick() {
+    this.setState(INITIAL_STATE);
+  }
+
   render() {
     const {
       categoryList,
@@ -152,6 +172,9 @@ class App extends React.Component {
       telefone,
       cep,
       endereco,
+      cidade,
+      estado,
+      payment,
       filteredProducts,
     } = this.state;
 
@@ -212,6 +235,10 @@ class App extends React.Component {
                   telefone={ telefone }
                   cep={ cep }
                   endereco={ endereco }
+                  cidade={ cidade }
+                  estado={ estado }
+                  payment={ payment }
+                  btnClick={ this.paymentButtonClick }
                 />) }
               />
               <Route exact path="/" component={ StartMessage } />

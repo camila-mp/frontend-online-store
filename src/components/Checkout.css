@@ -1,0 +1,97 @@
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.checkout-products-list {
+  align-items: left;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.checkout-product {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-image {
+  align-items: center;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  order: 1;
+  width: 48%;
+}
+
+.product-card-image {
+  flex-grow: 0;
+  margin: auto;
+  max-height: 90%;
+  max-width: 80%;
+}
+
+.checkout-product-info {
+  width: 48%;
+}
+
+.checkout-product-info p {
+  margin-bottom: 10px;
+}
+
+.checkout-info {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.checkout-info label {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+}
+
+.checkout-info input {
+  border: 0;
+  border-radius: 10px;
+  padding: 5px;
+  width: 85%;
+}
+
+.checkout-info select {
+  background-color: aliceblue;
+  border-radius: 10px;
+  width: 35%;
+}
+
+.checkout-payment {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.checkout-radio {
+  display: flex;
+}
+
+.checkout-radio input {
+  margin-right: 5px;
+}
+
+.checkout-form button {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px black;
+  color: #333;
+  cursor: pointer;
+  margin: auto;
+  padding: 8px 20px;
+}

@@ -53,10 +53,15 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCategoryList();
+    this.productAmountFilter();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.storeProducts();
+    const { cartProducts } = this.state;
+    if (cartProducts.length !== prevState.cartProducts.length) {
+      this.productAmountFilter();
+    }
   }
 
   onChangeHandle({ target }) {

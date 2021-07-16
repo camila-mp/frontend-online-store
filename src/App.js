@@ -96,14 +96,14 @@ class App extends React.Component {
   rmvFromCart(product) {
     const { cartProducts } = this.state;
     const newArray = [...cartProducts];
-    const productIndex = newArray
-      .findIndex((cartProduct) => cartProduct.id === product.id);
+    const initialSearchIndex = -1;
+    const productIndex = newArray.indexOf(product, initialSearchIndex);
 
     newArray.splice(productIndex, 1);
 
     this.setState({
       cartProducts: [...newArray],
-    }, () => this.productAmountFilter());
+    });
   }
 
   fetchProducts() {

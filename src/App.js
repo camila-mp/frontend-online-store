@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
 import FastCheckout from './components/FastCheckout';
-import INITIAL_STATE from './services/data';
+import { INITIAL_STATE, state } from './services/data';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,28 +27,7 @@ class App extends React.Component {
     this.rmvFromCart = this.rmvFromCart.bind(this);
     this.paymentButtonClick = this.paymentButtonClick.bind(this);
 
-    const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
-
-    this.state = {
-      categoryList: [],
-      category: '',
-      searchQuery: '',
-      cartProducts: storedProducts || [],
-      productDetails: {},
-      list: [],
-      loading: true,
-      nomeCompleto: '',
-      email: '',
-      cpf: '',
-      telefone: '',
-      cep: '',
-      endereco: '',
-      cidade: '',
-      estado: '',
-      payment: 'boleto',
-      filteredProducts: [],
-      fastCheckout: false,
-    };
+    this.state = state;
   }
 
   componentDidMount() {
@@ -111,9 +90,7 @@ class App extends React.Component {
     const newArray = [...cartProducts];
     const initialSearchIndex = -1;
     const productIndex = newArray.indexOf(product, initialSearchIndex);
-
     newArray.splice(productIndex, 1);
-
     this.setState({
       cartProducts: [...newArray],
     });
@@ -121,7 +98,6 @@ class App extends React.Component {
 
   fetchProducts() {
     const { searchQuery, category } = this.state;
-
     this.setState({
       loading: true,
     }, async () => {
@@ -175,7 +151,6 @@ class App extends React.Component {
       filteredProducts,
       fastCheckout,
     } = this.state;
-
     return (
       <div className="App">
         <BrowserRouter>

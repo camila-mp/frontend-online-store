@@ -19,6 +19,7 @@ class App extends React.Component {
 
     this.getState = this.getState.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.rmvFromCart = this.rmvFromCart.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.fastCheckout = this.fastCheckout.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
@@ -98,6 +99,19 @@ class App extends React.Component {
     this.setState((prevState) => ({
       cartProducts: [...prevState.cartProducts, newProduct],
     }));
+  }
+
+  rmvFromCart(product) {
+    const { cartProducts } = this.state;
+    const newArray = [...cartProducts];
+    const initialSearchIndex = -1;
+    const productIndex = newArray.indexOf(product, initialSearchIndex);
+
+    newArray.splice(productIndex, 1);
+
+    this.setState({
+      cartProducts: [...newArray],
+    });
   }
 
   fetchProducts() {
@@ -182,6 +196,8 @@ class App extends React.Component {
                   cartProducts={ cartProducts }
                   productAmountFilter={ this.productAmountFilter }
                   filteredProducts={ filteredProducts }
+                  addToCart={ this.addToCart }
+                  rmvFromCart={ this.rmvFromCart }
                 />) }
               />
               <Route

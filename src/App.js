@@ -10,6 +10,7 @@ import CategoryFilter from './components/CategoryFilter';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
+import FastCheckout from './components/FastCheckout';
 
 const INITIAL_STATE = {
   nomeCompleto: '',
@@ -166,6 +167,7 @@ class App extends React.Component {
             getState={ this.getState }
             totalProductsInCart={ cartProducts.length }
           />
+          <FastCheckout />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
             <Switch>

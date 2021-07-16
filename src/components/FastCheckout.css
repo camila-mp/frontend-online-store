@@ -1,0 +1,12 @@
+.fast-checkout {
+  background-color: #f1d854;
+  height: 50vh;
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 300px;
+}
+
+.show {
+  right: 0;
+}

@@ -7,7 +7,7 @@ class BtnCart extends Component {
     const { totalProductsInCart, fastCheckout } = this.props;
     return (
       <button type="button" onClick={ fastCheckout } className="cart-button">
-        <i className="bi bi-cart2" data-testid="shopping-cart-button cart-button" />
+        <i className="bi bi-cart2" />
         <div data-testid="shopping-cart-size" className="btn-cart-amount">
           { totalProductsInCart }
         </div>

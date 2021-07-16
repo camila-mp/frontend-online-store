@@ -4,6 +4,7 @@
   border: none;
   box-shadow: none;
   color: #333;
+  cursor: pointer;
   display: flex;
   font-size: 34px;
 }

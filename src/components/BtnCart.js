@@ -5,7 +5,7 @@ import './BtnCart.css';
 
 class BtnCart extends Component {
   render() {
-    const { totalProductsInCart } = this.props;
+    const { totalProductsInCart, fastCheckout } = this.props;
     return (
       <div>
         <Link
@@ -24,6 +24,7 @@ class BtnCart extends Component {
 
 BtnCart.propTypes = {
   totalProductsInCart: PropTypes.number.isRequired,
+  fastCheckout: PropTypes.func.isRequired,
 };
 
 export default BtnCart;

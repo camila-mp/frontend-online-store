@@ -172,6 +172,7 @@ class App extends React.Component {
           <SearchBar
             getState={ this.getState }
             totalProductsInCart={ cartProducts.length }
+            fastCheckout={ this.fastCheckout }
           />
           <FastCheckout />
           <section className="body-container">

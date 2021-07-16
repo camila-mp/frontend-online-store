@@ -18,6 +18,7 @@
 .fast-checkout-product-img {
   height: 100%;
   margin: auto;
+  max-width: 100%;
 }
 
 .fast-checkout-product-info {

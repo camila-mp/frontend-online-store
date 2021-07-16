@@ -6,8 +6,17 @@ import { Link } from 'react-router-dom';
 import FastCheckoutProductCard from './FastCheckoutProductCard';
 
 class FastCheckout extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      totalPrice: 0,
+    };
+  }
+
   render() {
     const { showFastCheckout, fastCheckout, filteredProducts } = this.props;
+    const { totalPrice } = this.state;
 
     return (
       <div
@@ -36,6 +45,10 @@ class FastCheckout extends Component {
               ))
           }
         </div>
+        <p>
+          Total - R$
+          {` ${totalPrice.toFixed(2)}`}
+        </p>
         <Link to="/checkout">
           Finalizar Compra!
         </Link>

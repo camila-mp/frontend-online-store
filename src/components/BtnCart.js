@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './BtnCart.css';
 
@@ -7,16 +6,13 @@ class BtnCart extends Component {
   render() {
     const { totalProductsInCart, fastCheckout } = this.props;
     return (
-      <div>
-        <Link
-          to="/shopping-cart"
-          className="cart-button"
-        >
-          <i className="bi bi-cart2" data-testid="shopping-cart-button" />
-        </Link>
-        <div data-testid="shopping-cart-size">
-          { totalProductsInCart }
-        </div>
+      <div className="btn-cart">
+        <button type="button" onClick={ fastCheckout } className="cart-button">
+          <i className="bi bi-cart2" data-testid="shopping-cart-button cart-button" />
+          <div data-testid="shopping-cart-size">
+            { totalProductsInCart }
+          </div>
+        </button>
       </div>
     );
   }

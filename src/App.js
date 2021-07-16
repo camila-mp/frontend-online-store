@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
 import FastCheckout from './components/FastCheckout';
-import INITIAL_STATE from './services/data';
+import INITIAL_STATE, { state } from './services/data';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,26 +29,7 @@ class App extends React.Component {
 
     const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
 
-    this.state = {
-      categoryList: [],
-      category: '',
-      searchQuery: '',
-      cartProducts: storedProducts || [],
-      productDetails: {},
-      list: [],
-      loading: true,
-      nomeCompleto: '',
-      email: '',
-      cpf: '',
-      telefone: '',
-      cep: '',
-      endereco: '',
-      cidade: '',
-      estado: '',
-      payment: 'boleto',
-      filteredProducts: [],
-      fastCheckout: false,
-    };
+    this.state = state(storedProducts);
   }
 
   componentDidMount() {

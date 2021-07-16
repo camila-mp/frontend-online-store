@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './FastCheckoutProductCard.css';
+import * as AiIcons from 'react-icons/ai';
 
 class FastCheckoutProductCard extends Component {
   render() {
@@ -7,8 +9,7 @@ class FastCheckoutProductCard extends Component {
     const { title, thumbnail_id: id, price } = product;
 
     return (
-      <div>
-        <p className="fast-checkout-product-name">{ title }</p>
+      <div className="fast-checkout-product">
         <div className="fast-checkout-product-img-div">
           <img
             src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` }
@@ -16,8 +17,16 @@ class FastCheckoutProductCard extends Component {
             className="fast-checkout-product-img"
           />
         </div>
-        <p className="fast-checkout-product-price">{ `R$ ${price.toFixed(2)}` }</p>
-        <p className="fast-checkout-product-amount">{ amount }</p>
+        <div className="fast-checkout-product-info">
+          <p className="fast-checkout-product-name">{ title }</p>
+          <div className="fast-checkout-product-setup">
+            <p className="fast-checkout-product-price">{ `R$ ${price.toFixed(2)}` }</p>
+            <AiIcons.AiOutlineUp />
+            <p className="fast-checkout-product-amount">{ amount }</p>
+            <AiIcons.AiOutlineDown />
+            <AiIcons.AiOutlineDelete />
+          </div>
+        </div>
       </div>
     );
   }

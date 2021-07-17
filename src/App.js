@@ -155,6 +155,7 @@ class App extends React.Component {
       payment,
       filteredProducts,
       fastCheckout,
+      listOrder
     } = this.state;
 
     return (
@@ -198,6 +199,8 @@ class App extends React.Component {
                   fetchProducts={ this.fetchProducts }
                   getProductDetail={ this.getProductDetail }
                   cartProducts={ cartProducts }
+                  listOrder={ listOrder }
+                  onChange={ this.onChangeHandle }
                 />) }
               />
               <Route

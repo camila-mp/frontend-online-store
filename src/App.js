@@ -155,7 +155,7 @@ class App extends React.Component {
       payment,
       filteredProducts,
       fastCheckout,
-      listOrder
+      listOrder,
     } = this.state;
 
     return (

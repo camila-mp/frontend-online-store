@@ -160,6 +160,7 @@ class Checkout extends React.Component {
     let total = 0;
     return (
       <div className="checkout-container">
+        <p>Detalhes da compra:</p>
         <div className="checkout-products-list">
           { filteredProducts.map(({ amount, product }) => {
             total += Number(product.price) * amount;

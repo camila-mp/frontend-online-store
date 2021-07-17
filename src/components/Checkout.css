@@ -16,8 +16,11 @@
 
 .checkout-product {
   align-items: center;
+  background-color: aliceblue;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
+  margin-bottom: 5px;
 }
 
 .checkout-image {
@@ -54,7 +57,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  margin-bottom: 7px;
+  margin-bottom: 15px;
 }
 
 .checkout-info input {

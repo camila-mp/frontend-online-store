@@ -8,7 +8,7 @@ import FastCheckoutProductCard from './FastCheckoutProductCard';
 class FastCheckout extends Component {
   render() {
     const { showFastCheckout, fastCheckout, filteredProducts } = this.props;
-    let totalPrice  = 0;
+    let totalPrice = 0;
 
     return (
       <div
@@ -63,7 +63,6 @@ FastCheckout.propTypes = {
       price: PropTypes.number.isRequired,
     }).isRequired,
   })).isRequired,
-  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FastCheckout;

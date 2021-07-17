@@ -40,10 +40,10 @@ class ShoppingCart extends Component {
 
     return (
       <div>
-        { filteredProducts.map((item) => (<CartProductCard
-          key={ item.product.id }
-          product={ item.product }
-          amount={ item.amount }
+        { filteredProducts.map(({ amount, product }) => (<CartProductCard
+          key={ product.id }
+          product={ product }
+          amount={ amount }
           addToCart={ addToCart }
           rmvFromCart={ rmvFromCart }
         />)) }

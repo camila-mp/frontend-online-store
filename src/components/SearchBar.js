@@ -43,7 +43,7 @@ class SearchBar extends React.Component {
 
   render() {
     const { search } = this.state;
-    const { totalProductsInCart } = this.props;
+    const { totalProductsInCart, fastCheckout } = this.props;
 
     return (
       <header>
@@ -71,6 +71,7 @@ class SearchBar extends React.Component {
         </Link>
         <BtnCart
           totalProductsInCart={ totalProductsInCart }
+          fastCheckout={ fastCheckout }
         />
       </header>
     );
@@ -79,6 +80,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   getState: PropTypes.func.isRequired,
+  fastCheckout: PropTypes.func.isRequired,
   totalProductsInCart: PropTypes.number.isRequired,
 };
 

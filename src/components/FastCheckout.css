@@ -1,0 +1,73 @@
+.fast-checkout {
+  background-color: #f1d854;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  position: fixed;
+  right: -100%;
+  top: 0;
+  transition: 350ms;
+  width: 350px;
+}
+
+.active {
+  right: 0;
+  transition: 350ms;
+}
+
+.fast-checkout-top-buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+.fast-btn-cart {
+  border: 2px solid black;
+  border-radius: 8px;
+  color: black;
+  cursor: pointer;
+  font-size: 35px;
+  font-weight: 500;
+  height: 45px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  width: 45px;
+}
+
+.fast-checkout-top-buttons svg {
+  border: 2px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 45px;
+}
+
+.fast-checkout-heading {
+  font-size: 26px;
+  letter-spacing: 1.3px;
+  margin: 15px auto;
+  text-decoration: underline;
+}
+
+.fast-checkout-total {
+  align-self: flex-end;
+  letter-spacing: 1.3px;
+  margin: 15px 6% 0;
+}
+
+.fast-checkout-button {
+  align-self: flex-end;
+  background-color: #3cac28;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  height: 40px;
+  letter-spacing: 1px;
+  margin: 10px 5%;
+  padding-top: 10px;
+  text-decoration: none;
+  width: 230px;
+}

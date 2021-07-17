@@ -10,7 +10,8 @@ import CategoryFilter from './components/CategoryFilter';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import Checkout from './components/Checkout';
-import INITIAL_STATE from './services/data';
+import FastCheckout from './components/FastCheckout';
+import INITIAL_STATE, { state } from './services/data';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,34 +19,17 @@ class App extends React.Component {
 
     this.getState = this.getState.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.rmvFromCart = this.rmvFromCart.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.fastCheckout = this.fastCheckout.bind(this);
     this.getProductDetail = this.getProductDetail.bind(this);
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
-    this.rmvFromCart = this.rmvFromCart.bind(this);
     this.paymentButtonClick = this.paymentButtonClick.bind(this);
 
     const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
 
-    this.state = {
-      categoryList: [],
-      category: '',
-      searchQuery: '',
-      cartProducts: storedProducts || [],
-      productDetails: {},
-      list: [],
-      loading: true,
-      nomeCompleto: '',
-      email: '',
-      cpf: '',
-      telefone: '',
-      cep: '',
-      endereco: '',
-      cidade: '',
-      estado: '',
-      payment: 'boleto',
-      filteredProducts: [],
-    };
+    this.state = state(storedProducts);
   }
 
   componentDidMount() {
@@ -85,6 +69,11 @@ class App extends React.Component {
     this.setState({
       productDetails: product,
     });
+  }
+
+  fastCheckout() {
+    const { fastCheckout } = this.state;
+    this.setState({ fastCheckout: !fastCheckout });
   }
 
   storeProducts() {
@@ -165,6 +154,7 @@ class App extends React.Component {
       estado,
       payment,
       filteredProducts,
+      fastCheckout,
     } = this.state;
 
     return (
@@ -173,6 +163,13 @@ class App extends React.Component {
           <SearchBar
             getState={ this.getState }
             totalProductsInCart={ cartProducts.length }
+            fastCheckout={ this.fastCheckout }
+          />
+          <FastCheckout
+            showFastCheckout={ fastCheckout }
+            fastCheckout={ this.fastCheckout }
+            filteredProducts={ filteredProducts }
+            cartProducts={ cartProducts }
           />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
@@ -183,8 +180,9 @@ class App extends React.Component {
                 render={ (props) => (<ShoppingCart
                   { ...props }
                   cartProducts={ cartProducts }
-                  addToCart={ this.addToCart }
+                  productAmountFilter={ this.productAmountFilter }
                   filteredProducts={ filteredProducts }
+                  addToCart={ this.addToCart }
                   rmvFromCart={ this.rmvFromCart }
                 />) }
               />

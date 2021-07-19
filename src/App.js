@@ -16,7 +16,6 @@ import INITIAL_STATE, { state } from './services/data';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.getState = this.getState.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.rmvFromCart = this.rmvFromCart.bind(this);
@@ -26,9 +25,7 @@ class App extends React.Component {
     this.onChangeHandle = this.onChangeHandle.bind(this);
     this.productAmountFilter = this.productAmountFilter.bind(this);
     this.paymentButtonClick = this.paymentButtonClick.bind(this);
-
     const storedProducts = JSON.parse(localStorage.getItem('cartProducts'));
-
     this.state = state(storedProducts);
   }
 
@@ -90,19 +87,15 @@ class App extends React.Component {
   rmvFromCart(product) {
     const { cartProducts } = this.state;
     const newArray = [...cartProducts];
-    const initialSearchIndex = -1;
-    const productIndex = newArray.indexOf(product, initialSearchIndex);
-
+    const productIndex = newArray.lastIndexOf(product);
     newArray.splice(productIndex, 1);
-
     this.setState({
-      cartProducts: [...newArray],
+      cartProducts: newArray,
     });
   }
 
   fetchProducts() {
     const { searchQuery, category } = this.state;
-
     this.setState({
       loading: true,
     }, async () => {
@@ -155,6 +148,7 @@ class App extends React.Component {
       payment,
       filteredProducts,
       fastCheckout,
+      listOrder,
     } = this.state;
 
     return (
@@ -198,6 +192,8 @@ class App extends React.Component {
                   fetchProducts={ this.fetchProducts }
                   getProductDetail={ this.getProductDetail }
                   cartProducts={ cartProducts }
+                  listOrder={ listOrder }
+                  onChange={ this.onChangeHandle }
                 />) }
               />
               <Route

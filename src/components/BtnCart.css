@@ -10,10 +10,18 @@
 }
 
 .btn-cart-amount {
+  align-items: center;
   background-color: white;
   border-radius: 50%;
-  font-size: 14px;
+  display: flex;
+  font-size: 13px;
+  font-weight: 600;
+  height: 18px;
+  justify-content: center;
   margin-left: 3px;
-  min-width: 25px;
-  padding: 5px;
+  overflow: auto;
+  position: relative;
+  right: 20%;
+  top: -15px;
+  width: 18px;
 }

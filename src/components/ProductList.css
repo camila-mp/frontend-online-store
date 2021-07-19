@@ -5,3 +5,9 @@
   justify-content: space-around;
   margin: 20px;
 }
+
+.product-list-order {
+  background-color: #ffffa4;
+  border-radius: 5px;
+  width: 20%;
+}

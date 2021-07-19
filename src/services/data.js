@@ -17,6 +17,7 @@ export const state = (param) => ({
   payment: 'boleto',
   filteredProducts: [],
   fastCheckout: false,
+  listOrder: '',
 });
 
 const INITIAL_STATE = {

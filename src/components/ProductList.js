@@ -19,7 +19,15 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { list, loading, getProductDetail, addToCart, cartProducts } = this.props;
+    const {
+      list,
+      loading,
+      getProductDetail,
+      addToCart,
+      cartProducts,
+      onChange,
+      listOrder,
+    } = this.props;
 
     if (loading) return <p className="main-container">Carregando...</p>;
 
@@ -31,18 +39,30 @@ class ProductList extends React.Component {
         </div>
       );
     }
+    if (listOrder === 'maior') list.sort((a, b) => b.price - a.price);
+    if (listOrder === 'menor') list.sort((a, b) => a.price - b.price);
 
     return (
-      <div className="product-container">
-        {
-          list.map((product) => (<ProductCard
-            key={ product.id }
-            product={ product }
-            addToCart={ addToCart }
-            getProductDetail={ getProductDetail }
-            cartProducts={ cartProducts }
-          />))
-        }
+      <div>
+        <label htmlFor="listOrder">
+          Ordenado por:
+          <select className="product-list-order" name="listOrder" onChange={ onChange }>
+            <option value="">-</option>
+            <option value="maior">Maior Preço</option>
+            <option value="menor">Menor Preço</option>
+          </select>
+        </label>
+        <div className="product-container">
+          {
+            list.map((product) => (<ProductCard
+              key={ product.id }
+              product={ product }
+              addToCart={ addToCart }
+              getProductDetail={ getProductDetail }
+              cartProducts={ cartProducts }
+            />))
+          }
+        </div>
       </div>
     );
   }
@@ -57,6 +77,8 @@ ProductList.propTypes = {
   query: PropTypes.string.isRequired,
   getProductDetail: PropTypes.func.isRequired,
   cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  listOrder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ProductList;

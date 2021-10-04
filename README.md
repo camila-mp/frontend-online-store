@@ -2,12 +2,10 @@
 
 Visualize a aplicação clicando <a href="https://camila-mp.github.io/frontend-online-store">aqui</a>.
 
-<img src="print-todo-list.png">
-
 # Sobre
 
-Projeto desenvolvido em grupo durante o curso da Trybe (após 3 meses de curso). Ideia geral das paginas e funcionalidades veio da Trybe e o codigo foi desenvolvido pelo grupo. Durante o projeto o grupo se organizou utilizando metodologias ágeis.
-A aplicação é uma simulação site de compras online que consome dados da <a href="https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br">API do Mercado Livre</a>. A aplicação permite ao usuário:
+Projeto desenvolvido em grupo durante o curso da Trybe, no módulo  Front-End (3 meses de curso). Ideia geral das paginas e funcionalidades veio da Trybe, enquanto o código foi desenvolvido pelo grupo. Durante o projeto o grupo se organizou utilizando **metodologias ágeis**.
+A aplicação é uma simulação site de compras online que consome dados da <a href="https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br"> API do Mercado Livre</a>. A aplicação permite ao usuário:
 
 - Buscar produtos por termos e categorias a partir da API do Mercado Livre;
 - Interagir com os produtos buscados de modo a adicioná-los e removê-los de um carrinho de compras em diferentes quantidades;

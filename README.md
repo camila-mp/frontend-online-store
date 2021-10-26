@@ -14,7 +14,7 @@ A aplicação é uma simulação de um site de compras online, que consome dados
 
 # Tecnologias utilizadas
 
-`HTML`, `CSS`, `JavaScript` e `React`.
+`HTML`, `CSS`, `JavaScript`, `React` e `React router`.
 
 # Como rodar o projeto na sua máquina
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
 import ShoppingCart from './components/ShoppingCart';
@@ -167,65 +167,63 @@ class App extends React.Component {
           />
           <section className="body-container">
             <CategoryFilter categoryList={ categoryList } getState={ this.getState } />
-            <Switch>
-              <Route
-                exact
-                path="/shopping-cart"
-                render={ (props) => (<ShoppingCart
-                  { ...props }
-                  cartProducts={ cartProducts }
-                  productAmountFilter={ this.productAmountFilter }
-                  filteredProducts={ filteredProducts }
-                  addToCart={ this.addToCart }
-                  rmvFromCart={ this.rmvFromCart }
-                />) }
-              />
-              <Route
-                path="/search"
-                render={ (props) => (<ProductList
-                  { ...props }
-                  query={ searchQuery }
-                  category={ category }
-                  addToCart={ this.addToCart }
-                  list={ list }
-                  loading={ loading }
-                  fetchProducts={ this.fetchProducts }
-                  getProductDetail={ this.getProductDetail }
-                  cartProducts={ cartProducts }
-                  listOrder={ listOrder }
-                  onChange={ this.onChangeHandle }
-                />) }
-              />
-              <Route
-                exact
-                path="/details"
-                render={ (props) => (<ProductDetails
-                  { ...props }
-                  product={ productDetails }
-                  addToCart={ this.addToCart }
-                />) }
-              />
-              <Route
-                exact
-                path="/checkout"
-                render={ (props) => (<Checkout
-                  { ...props }
-                  filteredProducts={ filteredProducts }
-                  onChangeHandle={ this.onChangeHandle }
-                  nomeCompleto={ nomeCompleto }
-                  email={ email }
-                  cpf={ cpf }
-                  telefone={ telefone }
-                  cep={ cep }
-                  endereco={ endereco }
-                  cidade={ cidade }
-                  estado={ estado }
-                  payment={ payment }
-                  btnClick={ this.paymentButtonClick }
-                />) }
-              />
-              <Route exact path="/" component={ StartMessage } />
-            </Switch>
+            <Route
+              exact
+              path="/shopping-cart"
+              render={ (props) => (<ShoppingCart
+                { ...props }
+                cartProducts={ cartProducts }
+                productAmountFilter={ this.productAmountFilter }
+                filteredProducts={ filteredProducts }
+                addToCart={ this.addToCart }
+                rmvFromCart={ this.rmvFromCart }
+              />) }
+            />
+            <Route
+              path="/search"
+              render={ (props) => (<ProductList
+                { ...props }
+                query={ searchQuery }
+                category={ category }
+                addToCart={ this.addToCart }
+                list={ list }
+                loading={ loading }
+                fetchProducts={ this.fetchProducts }
+                getProductDetail={ this.getProductDetail }
+                cartProducts={ cartProducts }
+                listOrder={ listOrder }
+                onChange={ this.onChangeHandle }
+              />) }
+            />
+            <Route
+              exact
+              path="/details"
+              render={ (props) => (<ProductDetails
+                { ...props }
+                product={ productDetails }
+                addToCart={ this.addToCart }
+              />) }
+            />
+            <Route
+              exact
+              path="/checkout"
+              render={ (props) => (<Checkout
+                { ...props }
+                filteredProducts={ filteredProducts }
+                onChangeHandle={ this.onChangeHandle }
+                nomeCompleto={ nomeCompleto }
+                email={ email }
+                cpf={ cpf }
+                telefone={ telefone }
+                cep={ cep }
+                endereco={ endereco }
+                cidade={ cidade }
+                estado={ estado }
+                payment={ payment }
+                btnClick={ this.paymentButtonClick }
+              />) }
+            />
+            <Route exact path="/" component={ StartMessage } />
           </section>
         </BrowserRouter>
         <Footer />

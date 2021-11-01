@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CartProductCard from './CartProductCard';
+import './ShoppingCart.css';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -39,17 +40,19 @@ class ShoppingCart extends Component {
     }
 
     return (
-      <div>
-        { filteredProducts.map(({ amount, product }) => (<CartProductCard
-          key={ product.id }
-          product={ product }
-          amount={ amount }
-          addToCart={ addToCart }
-          rmvFromCart={ rmvFromCart }
-        />)) }
-        <Link data-testid="checkout-products" to="/checkout">
-          Finalizar Compra!
-        </Link>
+      <div className="main-cart">
+        <div className="cart">
+          { filteredProducts.map(({ amount, product }) => (<CartProductCard
+            key={ product.id }
+            product={ product }
+            amount={ amount }
+            addToCart={ addToCart }
+            rmvFromCart={ rmvFromCart }
+          />)) }
+          <Link data-testid="checkout-products" to="/checkout">
+            Finalizar Compra!
+          </Link>
+        </div>
       </div>
     );
   }

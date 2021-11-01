@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './CartProductCard.css';
 
 class CartProductCard extends React.Component {
   render() {
@@ -7,17 +8,21 @@ class CartProductCard extends React.Component {
     const { title, thumbnail_id: id, price } = product;
 
     return (
-      <div>
+      <div className="cart-product">
         <p data-testid="shopping-cart-product-name">{ title }</p>
-        <img src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
-        <p>{ price }</p>
+        <img className="prod-img" src={ `https://http2.mlstatic.com/D_NQ_NP_${id}-W.webp` } alt="Imagem do Produto" />
+        <p>
+          R$
+          &nbsp;
+          { price }
+        </p>
         <button
           className="rem-btn"
           data-testid="product-decrease-quantity"
           type="button"
           onClick={ () => rmvFromCart(product) }
         >
-          Remover
+          -
         </button>
         <p data-testid="shopping-cart-product-quantity">{ amount }</p>
         <button
@@ -26,7 +31,7 @@ class CartProductCard extends React.Component {
           type="button"
           onClick={ () => addToCart(product) }
         >
-          Adicionar
+          +
         </button>
       </div>
     );

@@ -1,0 +1,14 @@
+.main-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 5px;
+  width: 70%;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

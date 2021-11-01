@@ -45,7 +45,7 @@ class ProductList extends React.Component {
     return (
       <div>
         <label htmlFor="listOrder">
-          Ordenado por:
+          Ordenado por:&nbsp;
           <select className="product-list-order" name="listOrder" onChange={ onChange }>
             <option value="">-</option>
             <option value="maior">Maior Preço</option>

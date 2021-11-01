@@ -1,6 +1,8 @@
 # Boas vindas ao repositório Frontend Online Store
 
-Visualize a aplicação clicando <a href="https://camila-mp.github.io/frontend-online-store">aqui</a>.
+Visualize e teste a aplicação clicando <a href="https://camila-mp.github.io/frontend-online-store">aqui</a>.
+
+<img src="frontend-online-store-print.png">
 
 # Sobre
 

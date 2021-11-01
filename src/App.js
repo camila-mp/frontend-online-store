@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import SearchBar from './components/SearchBar';
 import ShoppingCart from './components/ShoppingCart';
@@ -153,7 +153,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <BrowserRouter>
+        <HashRouter>
           <SearchBar
             getState={ this.getState }
             totalProductsInCart={ cartProducts.length }
@@ -225,7 +225,7 @@ class App extends React.Component {
             />
             <Route exact path="/" component={ StartMessage } />
           </section>
-        </BrowserRouter>
+        </HashRouter>
         <Footer />
       </div>
     );

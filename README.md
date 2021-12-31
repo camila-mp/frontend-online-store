@@ -6,7 +6,7 @@ Visualize e teste a aplicação clicando <a href="https://camila-mp.github.io/fr
 
 # Sobre
 
-Projeto desenvolvido em grupo durante o curso da Trybe, no módulo Front-End (3 meses de curso). Ideia da organização das páginas, funcionalidades e testes vieram da Trybe, enquanto o grupo desenvolveu todo o código (React, JSX, HTML e CSS). Durante o projeto, o grupo se organizou utilizando **metodologias ágeis**.
+Projeto desenvolvido em grupo durante o curso da Trybe, no módulo Front-End (3 meses de curso). Ideia da organização das páginas e funcionalidades vieram da Trybe, enquanto o grupo desenvolveu todo o código (React, JSX, HTML e CSS). Durante o projeto, o grupo se organizou utilizando **metodologias ágeis**.
 A aplicação é uma simulação de um site de compras online, que consome dados da <a href="https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br"> API do Mercado Livre</a>. A aplicação permite ao usuário:
 
 - Buscar produtos por termos e categorias a partir da API do Mercado Livre;

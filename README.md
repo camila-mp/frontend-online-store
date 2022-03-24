@@ -31,5 +31,5 @@ Abra o seu Visual Studio code e siga as instruções a seguir.
 3. Instale as dependências com:
 `npm install` ou `yarn`
 
-4. Inicialize a aplicação com no servidor local:
+4. Inicialize a aplicação no servidor local:
 `npm start` ou `yarn run start`
